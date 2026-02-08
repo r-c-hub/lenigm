@@ -56,7 +56,8 @@ body {
 
 .brand-image {
   display: block;
-  width: min(340px, 62vw);
+  width: 62vw;
+  max-width: 340px;
   height: auto;
   filter: drop-shadow(0 8px 16px rgba(123, 92, 255, 0.15));
   margin: 0 auto;
@@ -498,7 +499,8 @@ body {
   }
 
   .brand-image {
-    width: min(230px, 70vw);
+    width: 70vw;
+    max-width: 230px;
   }
 
   body.game-active #categoryChip,
