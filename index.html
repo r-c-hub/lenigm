@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lenigm - Jeu d'énigmes</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbit"></div>
+  <main class="app" id="app">
+    <header class="top">
+      <div class="brand">
+        <div class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Logo Lenigm">
+            <defs>
+              <linearGradient id="spark" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#2ec4b6" />
+                <stop offset="1" stop-color="#ff6f59" />
+              </linearGradient>
+            </defs>
+            <rect x="14" y="14" width="92" height="92" rx="22" fill="#fff7e9" stroke="url(#spark)" stroke-width="8" />
+            <rect x="54" y="28" width="12" height="64" rx="6" fill="url(#spark)" />
+            <rect x="28" y="54" width="64" height="12" rx="6" fill="url(#spark)" />
+            <circle cx="92" cy="34" r="8" fill="#7b5cff" />
+            <text x="78" y="48" font-size="22" font-family="sans-serif" fill="#7b5cff">?</text>
+          </svg>
+        </div>
+        <div>
+          <div class="logo">Lenigm ?</div>
+          <div class="subtitle">Jeu d'énigmes et devinettes pour enfants</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="panel" id="setup">
+      <h1>Prépare ton jeu</h1>
+      <div class="grid">
+        <div class="card">
+          <h2>Type d'énigme</h2>
+          <div class="options" id="categoryOptions"></div>
+        </div>
+        <div class="card">
+          <h2>Mode</h2>
+          <div class="options" id="modeOptions"></div>
+        </div>
+        <div class="card">
+          <h2>Difficulté par âge</h2>
+          <input type="range" id="age" min="4" max="10" value="7" />
+          <div class="age-value">Âge: <span id="ageValue">7</span> ans</div>
+        </div>
+        <div class="card">
+          <h2>Options</h2>
+          <label class="toggle">
+            <input type="checkbox" id="timer" />
+            <span>Chronométré</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="timedMode" />
+            <span>Contre la montre (1 minute)</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="sound" checked />
+            <span>Sons</span>
+          </label>
+        </div>
+      </div>
+      <button class="primary" id="start"><span class="btn-icon">🚀</span>Démarrer</button>
+      <p class="note">Aucune connexion Internet requise. Des milliers de combinaisons d'indices sont générées localement.</p>
+    </section>
+
+    <section class="panel hidden" id="game">
+      <div class="game-top">
+        <div class="game-chips">
+          <div class="chip" id="categoryChip">Type: Animal</div>
+          <div class="chip" id="modeChip">Mode: Image</div>
+          <div class="chip hidden" id="timerChip">Temps: <span id="timerValue">0.0</span>s</div>
+          <div class="chip hidden" id="scoreChip">Score: 0</div>
+        </div>
+        <div class="game-actions">
+          <button class="primary" id="playAgain"><span class="btn-icon">🎲</span>Nouvelle énigme</button>
+          <button class="ghost" id="backToSetup"><span class="btn-icon">⚙️</span>Retour aux réglages</button>
+        </div>
+      </div>
+
+      <div class="game-body">
+        <div class="riddle">
+          <div class="clue">Indice: <span id="clueText"></span></div>
+          <div class="riddle-actions">
+            <button class="secondary" id="nextClue"><span class="btn-icon">🧩</span>Nouvel indice</button>
+          </div>
+        </div>
+        <aside class="history" id="clueHistory" aria-live="polite"></aside>
+      </div>
+
+      <div class="image-mode hidden" id="imageMode">
+        <div class="image-grid" id="imageGrid"></div>
+      </div>
+
+      <div class="text-mode hidden" id="textMode" hidden>
+        <input type="text" id="answerInput" placeholder="Ta réponse..." autocomplete="off" />
+        <button class="primary" id="submitAnswer"><span class="btn-icon">✅</span>Valider</button>
+      </div>
+
+      <div class="result" id="result"></div>
+      <div class="facts" id="fact"></div>
+
+      <div class="confetti" id="confetti"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
