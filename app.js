@@ -1,17 +1,46 @@
 ﻿const CATEGORIES = [
-  { id: "animal", label: "Animal", icon: "ðŸ¾" },
-  { id: "objet", label: "Objet", icon: "ðŸ§¸" },
-  { id: "aliment", label: "Fruits & LÃ©gumes", icon: "ðŸ¥—" },
-  { id: "personne", label: "Personne", icon: "ðŸ§’" },
-  { id: "aleatoire", label: "AlÃ©atoire", icon: "ðŸŽ²" }
+  { id: "animal", label: "Animal", icon: "🐾" },
+  { id: "objet", label: "Objet", icon: "🧸" },
+  { id: "aliment", label: "Fruits & Légumes", icon: "🥗" },
+  { id: "personne", label: "Personne", icon: "🧒" },
+  { id: "aleatoire", label: "Aléatoire", icon: "🎲" }
 ];
 
 const MODES = [
-  { id: "image", label: "Image", icon: "ðŸ–¼ï¸" },
-  { id: "texte", label: "Texte", icon: "âŒ¨ï¸" }
+  { id: "image", label: "Image", icon: "🖼️" },
+  { id: "texte", label: "Texte", icon: "⌨️" }
 ];
 
 const RECORD_KEY = "lenigm_records";
+
+const ICON_FALLBACK = {
+  animal: "🐾",
+  objet: "🧸",
+  aliment: "🥗",
+  personne: "🧒",
+  aleatoire: "🎲",
+  image: "🖼️",
+  texte: "⌨️",
+  banane: "🍌",
+  fraise: "🍓",
+  raisin: "🍇",
+  carotte: "🥕",
+  tomate: "🍅",
+  concombre: "🥒",
+  yaourt: "🥛",
+  balle_tennis: "🎾",
+  pistolet_eau: "🔫",
+  bonnet: "🧢",
+  perceuse: "🛠️",
+  cahier: "📓",
+  brosse_a_cheveux: "🪮",
+  facteur: "📮",
+  vendeur: "🧑‍💼",
+  footballeur: "⚽",
+  pompier2: "🚒",
+  professeur: "🧑‍🏫",
+  cuisiniere: "👩‍🍳"
+};
 
 function loadRecords() {
   try {
@@ -55,7 +84,7 @@ const DATA = {
       clues: {
         easy: ["C'est un animal", "Il aime jouer", "Il peut aboyer"],
         medium: ["Il vit souvent avec les humains", "Il garde parfois la maison"],
-        hard: ["C'est le meilleur ami de l'homme", "On le promÃ¨ne en laisse"]
+        hard: ["C'est le meilleur ami de l'homme", "On le promène en laisse"]
       },
       facts: ["Le chien comprend souvent des mots simples.", "Il existe des milliers de races de chiens."]
     },
@@ -69,7 +98,7 @@ const DATA = {
         medium: ["Il aime grimper", "Il chasse parfois les souris"],
         hard: ["Il ronronne quand il est content", "Il a des moustaches"]
       },
-      facts: ["Le chat dort plusieurs heures par jour.", "Un bÃ©bÃ© chat s'appelle un chaton."]
+      facts: ["Le chat dort plusieurs heures par jour.", "Un bébé chat s'appelle un chaton."]
     },
     {
       id: "lion",
@@ -81,19 +110,19 @@ const DATA = {
         medium: ["Il est carnivore", "Il est plus grand qu'un chien"],
         hard: ["Il est le roi de la savane", "Simba en est un"]
       },
-      facts: ["Le bÃ©bÃ© du lion s'appelle un lionceau.", "Le lion vit surtout en Afrique."]
+      facts: ["Le bébé du lion s'appelle un lionceau.", "Le lion vit surtout en Afrique."]
     },
     {
       id: "elephant",
-      label: "Ã‰lÃ©phant",
-      aliases: ["elephant", "Ã©lÃ©phant", "un Ã©lÃ©phant", "des Ã©lÃ©phants"],
+      label: "Éléphant",
+      aliases: ["elephant", "éléphant", "un éléphant", "des éléphants"],
       icon: "ðŸ˜",
       clues: {
-        easy: ["C'est un trÃ¨s grand animal", "Il a de grandes oreilles"],
+        easy: ["C'est un très grand animal", "Il a de grandes oreilles"],
         medium: ["Il vit en troupeau", "Il aime l'eau"],
         hard: ["Il a une trompe", "Il est herbivore"]
       },
-      facts: ["L'Ã©lÃ©phant peut utiliser sa trompe pour boire.", "Il vit en Afrique et en Asie."]
+      facts: ["L'éléphant peut utiliser sa trompe pour boire.", "Il vit en Afrique et en Asie."]
     },
     {
       id: "vache",
@@ -103,9 +132,9 @@ const DATA = {
       clues: {
         easy: ["C'est un animal de ferme", "Elle mange de l'herbe"],
         medium: ["Elle donne du lait", "Elle dit meuh"],
-        hard: ["On la voit dans les prÃ©s", "Elle a des taches"]
+        hard: ["On la voit dans les prés", "Elle a des taches"]
       },
-      facts: ["Le lait sert Ã  faire du fromage.", "La vache est un animal herbivore."]
+      facts: ["Le lait sert à faire du fromage.", "La vache est un animal herbivore."]
     },
     {
       id: "lapin",
@@ -114,7 +143,7 @@ const DATA = {
       icon: "ðŸ°",
       clues: {
         easy: ["Il a de grandes oreilles", "Il aime les carottes"],
-        medium: ["Il saute trÃ¨s bien", "Il est rapide"],
+        medium: ["Il saute très bien", "Il est rapide"],
         hard: ["On le voit souvent dans les histoires", "Il a des moustaches"]
       },
       facts: ["Le lapin est herbivore.", "Il peut creuser des terriers."]
@@ -127,9 +156,9 @@ const DATA = {
       clues: {
         easy: ["Il vit dans l'eau", "Il a des nageoires"],
         medium: ["Il respire avec des branchies", "Il ne marche pas"],
-        hard: ["Il peut Ãªtre dans un aquarium", "Il aime les bulles"]
+        hard: ["Il peut être dans un aquarium", "Il aime les bulles"]
       },
-      facts: ["Les poissons utilisent leurs nageoires pour nager.", "Ils vivent dans l'eau douce ou salÃ©e."]
+      facts: ["Les poissons utilisent leurs nageoires pour nager.", "Ils vivent dans l'eau douce ou salée."]
     },
     {
       id: "tortue",
@@ -139,9 +168,9 @@ const DATA = {
       clues: {
         easy: ["Elle a une carapace", "Elle avance lentement"],
         medium: ["Elle peut vivre longtemps", "Elle aime le soleil"],
-        hard: ["Elle peut vivre sur terre ou dans l'eau", "Elle rentre sa tÃªte"]
+        hard: ["Elle peut vivre sur terre ou dans l'eau", "Elle rentre sa tête"]
       },
-      facts: ["La tortue peut vivre trÃ¨s longtemps.", "Sa carapace la protÃ¨ge."]
+      facts: ["La tortue peut vivre très longtemps.", "Sa carapace la protège."]
     },
     {
       id: "panda",
@@ -151,7 +180,7 @@ const DATA = {
       clues: {
         easy: ["Il est noir et blanc", "Il aime manger"],
         medium: ["Il vit en montagne", "Il adore le bambou"],
-        hard: ["Il vient d'Asie", "Il est trÃ¨s mignon"]
+        hard: ["Il vient d'Asie", "Il est très mignon"]
       },
       facts: ["Le panda mange surtout du bambou.", "Il vit principalement en Chine."]
     },
@@ -162,10 +191,10 @@ const DATA = {
       icon: "ðŸ´",
       clues: {
         easy: ["C'est un animal", "Il peut galoper"],
-        medium: ["Il porte un cavalier", "Il a une criniÃ¨re"],
-        hard: ["Il vit dans une Ã©curie", "On le selle pour le monter"]
+        medium: ["Il porte un cavalier", "Il a une crinière"],
+        hard: ["Il vit dans une écurie", "On le selle pour le monter"]
       },
-      facts: ["Le cheval peut courir trÃ¨s vite.", "Il a une criniÃ¨re sur le cou."]
+      facts: ["Le cheval peut courir très vite.", "Il a une crinière sur le cou."]
     },
     {
       id: "cochon",
@@ -177,7 +206,7 @@ const DATA = {
         medium: ["Il grogne", "Il a un petit nez rond"],
         hard: ["On le voit avec une queue en tire-bouchon", "Il est rose"]
       },
-      facts: ["Le cochon est trÃ¨s intelligent.", "Il vit dans une porcherie."]
+      facts: ["Le cochon est très intelligent.", "Il vit dans une porcherie."]
     },
     {
       id: "canard",
@@ -189,7 +218,7 @@ const DATA = {
         medium: ["Il a un bec plat", "Il fait coin-coin"],
         hard: ["Il marche en se dandinant", "Il a des plumes"]
       },
-      facts: ["Le canard aime les Ã©tangs.", "Il peut voler sur de longues distances."]
+      facts: ["Le canard aime les étangs.", "Il peut voler sur de longues distances."]
     },
     {
       id: "ours",
@@ -198,10 +227,10 @@ const DATA = {
       icon: "ðŸ»",
       clues: {
         easy: ["C'est un animal", "Il est grand"],
-        medium: ["Il aime le miel", "Il vit dans la forÃªt"],
+        medium: ["Il aime le miel", "Il vit dans la forêt"],
         hard: ["Il peut hiberner", "Il a de grosses pattes"]
       },
-      facts: ["L'ours peut dormir longtemps en hiver.", "Il a un odorat trÃ¨s dÃ©veloppÃ©."]
+      facts: ["L'ours peut dormir longtemps en hiver.", "Il a un odorat très développé."]
     },
     {
       id: "girafe",
@@ -209,7 +238,7 @@ const DATA = {
       aliases: ["girafe", "une girafe", "la girafe"],
       icon: "ðŸ¦’",
       clues: {
-        easy: ["C'est un animal", "Elle est trÃ¨s grande"],
+        easy: ["C'est un animal", "Elle est très grande"],
         medium: ["Elle a un long cou", "Elle mange des feuilles"],
         hard: ["Elle vit en Afrique", "Elle a des taches"]
       },
@@ -223,7 +252,7 @@ const DATA = {
       clues: {
         easy: ["Il vit dans l'eau", "Il est rapide"],
         medium: ["Il saute hors de l'eau", "Il aime jouer"],
-        hard: ["Il est trÃ¨s intelligent", "Il vit dans l'ocÃ©an"]
+        hard: ["Il est très intelligent", "Il vit dans l'océan"]
       },
       facts: ["Le dauphin communique avec des sons.", "Il vit en groupe."]
     },
@@ -234,8 +263,8 @@ const DATA = {
       icon: "ðŸ§",
       clues: {
         easy: ["C'est un oiseau", "Il aime le froid"],
-        medium: ["Il ne vole pas", "Il nage trÃ¨s bien"],
-        hard: ["Il vit prÃ¨s des pÃ´les", "Il est noir et blanc"]
+        medium: ["Il ne vole pas", "Il nage très bien"],
+        hard: ["Il vit près des pôles", "Il est noir et blanc"]
       },
       facts: ["Le pingouin glisse parfois sur la glace.", "Il a un plumage qui le garde au chaud."]
     },
@@ -247,9 +276,9 @@ const DATA = {
       clues: {
         easy: ["C'est un insecte", "Elle vole"],
         medium: ["Elle fait du miel", "Elle va sur les fleurs"],
-        hard: ["Elle vit dans une ruche", "Elle pique pour se dÃ©fendre"]
+        hard: ["Elle vit dans une ruche", "Elle pique pour se défendre"]
       },
-      facts: ["L'abeille aide les fleurs Ã  grandir.", "Elle fabrique le miel dans la ruche."]
+      facts: ["L'abeille aide les fleurs à grandir.", "Elle fabrique le miel dans la ruche."]
     },
     {
       id: "renard",
@@ -258,10 +287,10 @@ const DATA = {
       icon: "ðŸ¦Š",
       clues: {
         easy: ["C'est un animal", "Il est roux"],
-        medium: ["Il vit dans la forÃªt", "Il est malin"],
+        medium: ["Il vit dans la forêt", "Il est malin"],
         hard: ["Il a une queue touffue", "Il chasse la nuit"]
       },
-      facts: ["Le renard a une excellente ouÃ¯e.", "Il vit souvent dans des terriers."]
+      facts: ["Le renard a une excellente ouïe.", "Il vit souvent dans des terriers."]
     },
     {
       id: "singe",
@@ -273,7 +302,7 @@ const DATA = {
         medium: ["Il vit dans la jungle", "Il mange des fruits"],
         hard: ["Il a une longue queue", "Il se balance dans les arbres"]
       },
-      facts: ["Le singe est trÃ¨s agile.", "Il aime vivre en groupe."]
+      facts: ["Le singe est très agile.", "Il aime vivre en groupe."]
     },
     {
       id: "mouton",
@@ -282,10 +311,10 @@ const DATA = {
       icon: "ðŸ‘",
       clues: {
         easy: ["C'est un animal", "Il est doux"],
-        medium: ["Il vit Ã  la ferme", "Il mange de l'herbe"],
+        medium: ["Il vit à la ferme", "Il mange de l'herbe"],
         hard: ["Il a de la laine", "On le tond au printemps"]
       },
-      facts: ["La laine du mouton sert Ã  faire des vÃªtements.", "Le mouton vit souvent en troupeau."]
+      facts: ["La laine du mouton sert à faire des vêtements.", "Le mouton vit souvent en troupeau."]
     },
     {
       id: "hibou",
@@ -295,9 +324,9 @@ const DATA = {
       clues: {
         easy: ["C'est un oiseau", "Il vit la nuit"],
         medium: ["Il a de grands yeux", "Il chasse en silence"],
-        hard: ["Il pousse un hululement", "Il aime les forÃªts"]
+        hard: ["Il pousse un hululement", "Il aime les forêts"]
       },
-      facts: ["Le hibou voit trÃ¨s bien la nuit.", "Il vole sans faire de bruit."]
+      facts: ["Le hibou voit très bien la nuit.", "Il vole sans faire de bruit."]
     },
     {
       id: "serpent",
@@ -309,7 +338,7 @@ const DATA = {
         medium: ["Il n'a pas de pattes", "Il se cache dans l'herbe"],
         hard: ["Il peut s'enrouler", "Il sort sa langue"]
       },
-      facts: ["Le serpent se dÃ©place en glissant.", "Il peut vivre dans des milieux variÃ©s."]
+      facts: ["Le serpent se déplace en glissant.", "Il peut vivre dans des milieux variés."]
     }
   ],
   objet: [
@@ -319,11 +348,11 @@ const DATA = {
       aliases: ["pizza", "une pizza", "la pizza", "des pizzas"],
       icon: "ðŸ•",
       clues: {
-        easy: ["C'est une chose Ã  manger", "C'est rond"],
-        medium: ["Ceci a Ã©tÃ© inventÃ© en Italie", "Cela se cuit au four"],
+        easy: ["C'est une chose à manger", "C'est rond"],
+        medium: ["Ceci a été inventé en Italie", "Cela se cuit au four"],
         hard: ["Il y a de la tomate et de la mozzarella", "On la coupe en parts"]
       },
-      facts: ["L'Italie est le pays d'origine de la pizza.", "On peut la garnir avec beaucoup d'ingrÃ©dients."]
+      facts: ["L'Italie est le pays d'origine de la pizza.", "On peut la garnir avec beaucoup d'ingrédients."]
     },
     {
       id: "ballon",
@@ -335,7 +364,7 @@ const DATA = {
         medium: ["On peut le lancer", "Il rebondit"],
         hard: ["On l'utilise au football", "Il roule sur le sol"]
       },
-      facts: ["Un ballon peut Ãªtre gonflÃ© avec de l'air.", "Il sert Ã  faire du sport."]
+      facts: ["Un ballon peut être gonflé avec de l'air.", "Il sert à faire du sport."]
     },
     {
       id: "livre",
@@ -345,9 +374,9 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "On l'ouvre"],
         medium: ["Il contient des pages", "On peut le lire"],
-        hard: ["Il raconte une histoire", "On le trouve Ã  la bibliothÃ¨que"]
+        hard: ["Il raconte une histoire", "On le trouve à la bibliothèque"]
       },
-      facts: ["La bibliothÃ¨que est l'endroit oÃ¹ l'on emprunte des livres.", "Un livre a souvent une couverture."]
+      facts: ["La bibliothèque est l'endroit où l'on emprunte des livres.", "Un livre a souvent une couverture."]
     },
     {
       id: "tasse",
@@ -357,33 +386,33 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "On boit dedans"],
         medium: ["Elle a une anse", "On la met sur la table"],
-        hard: ["Elle contient souvent du chocolat chaud", "Elle peut Ãªtre en porcelaine"]
+        hard: ["Elle contient souvent du chocolat chaud", "Elle peut être en porcelaine"]
       },
-      facts: ["Une tasse peut Ãªtre petite ou grande.", "Elle est pratique pour les boissons chaudes."]
+      facts: ["Une tasse peut être petite ou grande.", "Elle est pratique pour les boissons chaudes."]
     },
     {
       id: "velo",
-      label: "VÃ©lo",
-      aliases: ["velo", "vÃ©lo", "un vÃ©lo", "bicyclette"],
+      label: "Vélo",
+      aliases: ["velo", "vélo", "un vélo", "bicyclette"],
       icon: "ðŸš²",
       clues: {
         easy: ["C'est un objet", "Il roule"],
-        medium: ["Il a deux roues", "On pÃ©dale"],
+        medium: ["Il a deux roues", "On pédale"],
         hard: ["On le gare avec un antivol", "Il a un guidon"]
       },
-      facts: ["Le vÃ©lo est bon pour la santÃ©.", "Il faut un casque pour rouler en sÃ©curitÃ©."]
+      facts: ["Le vélo est bon pour la santé.", "Il faut un casque pour rouler en sécurité."]
     },
     {
       id: "brosse_a_dents",
-      label: "Brosse Ã  dents",
-      aliases: ["brosse Ã  dents", "brosse a dents", "brosse", "une brosse Ã  dents"],
+      label: "Brosse à dents",
+      aliases: ["brosse à dents", "brosse a dents", "brosse", "une brosse à dents"],
       icon: "ðŸª¥",
       clues: {
         easy: ["C'est un objet", "On l'utilise tous les jours"],
         medium: ["Elle a des poils", "Elle est dans la salle de bain"],
-        hard: ["Elle sert Ã  nettoyer les dents", "On met du dentifrice dessus"]
+        hard: ["Elle sert à nettoyer les dents", "On met du dentifrice dessus"]
       },
-      facts: ["On se brosse les dents au moins deux fois par jour.", "Le dentifrice protÃ¨ge les dents."]
+      facts: ["On se brosse les dents au moins deux fois par jour.", "Le dentifrice protège les dents."]
     },
     {
       id: "montre",
@@ -393,9 +422,9 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "Il donne l'heure"],
         medium: ["On la porte au poignet", "Elle a parfois des aiguilles"],
-        hard: ["Elle peut Ãªtre digitale", "Elle fait tic-tac"]
+        hard: ["Elle peut être digitale", "Elle fait tic-tac"]
       },
-      facts: ["Une montre aide Ã  savoir l'heure.", "On peut aussi lire l'heure sur un tÃ©lÃ©phone."]
+      facts: ["Une montre aide à savoir l'heure.", "On peut aussi lire l'heure sur un téléphone."]
     },
     {
       id: "parapluie",
@@ -404,10 +433,10 @@ const DATA = {
       icon: "â˜‚ï¸",
       clues: {
         easy: ["C'est un objet", "Il sert quand il pleut"],
-        medium: ["Il s'ouvre", "Il protÃ¨ge la tÃªte"],
-        hard: ["Il a une toile et des baleines", "On le tient avec une poignÃ©e"]
+        medium: ["Il s'ouvre", "Il protège la tête"],
+        hard: ["Il a une toile et des baleines", "On le tient avec une poignée"]
       },
-      facts: ["Le parapluie protÃ¨ge de la pluie.", "Il existe aussi des parapluies pour le soleil."]
+      facts: ["Le parapluie protège de la pluie.", "Il existe aussi des parapluies pour le soleil."]
     },
     {
       id: "ciseaux",
@@ -415,11 +444,11 @@ const DATA = {
       aliases: ["ciseaux", "des ciseaux", "une paire de ciseaux"],
       icon: "âœ‚ï¸",
       clues: {
-        easy: ["C'est un objet", "On le tient Ã  la main"],
+        easy: ["C'est un objet", "On le tient à la main"],
         medium: ["Il coupe du papier", "Il a deux lames"],
         hard: ["Il a des anneaux pour les doigts", "On l'utilise en classe"]
       },
-      facts: ["Les ciseaux servent Ã  couper proprement.", "Il faut faire attention en les utilisant."]
+      facts: ["Les ciseaux servent à couper proprement.", "Il faut faire attention en les utilisant."]
     },
     {
       id: "pinceau",
@@ -429,7 +458,7 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "On l'utilise pour dessiner"],
         medium: ["Il a des poils", "On le trempe dans la peinture"],
-        hard: ["Il sert Ã  peindre", "On s'en sert en arts plastiques"]
+        hard: ["Il sert à peindre", "On s'en sert en arts plastiques"]
       },
       facts: ["Un pinceau a des poils souples.", "Il permet de faire de jolis dessins."]
     },
@@ -441,7 +470,7 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "On s'assoit dessus"],
         medium: ["Il a quatre pieds", "Il n'a pas de dossier"],
-        hard: ["Il est souvent plus petit qu'une chaise", "On le dÃ©place facilement"]
+        hard: ["Il est souvent plus petit qu'une chaise", "On le déplace facilement"]
       },
       facts: ["Le tabouret est pratique pour les petits espaces.", "On le trouve dans la cuisine ou l'atelier."]
     },
@@ -451,59 +480,59 @@ const DATA = {
       aliases: ["lampe", "une lampe", "la lampe"],
       icon: "ðŸ’¡",
       clues: {
-        easy: ["C'est un objet", "Elle Ã©claire"],
+        easy: ["C'est un objet", "Elle éclaire"],
         medium: ["On l'allume", "Elle est dans la maison"],
-        hard: ["Elle peut Ãªtre sur une table", "Elle a une ampoule"]
+        hard: ["Elle peut être sur une table", "Elle a une ampoule"]
       },
-      facts: ["Une lampe sert Ã  Ã©clairer une piÃ¨ce.", "On peut l'Ã©teindre pour Ã©conomiser l'Ã©nergie."]
+      facts: ["Une lampe sert à éclairer une pièce.", "On peut l'éteindre pour économiser l'énergie."]
     },
     {
       id: "cle",
-      label: "ClÃ©",
-      aliases: ["cle", "clÃ©", "une clÃ©", "la clÃ©"],
+      label: "Clé",
+      aliases: ["cle", "clé", "une clé", "la clé"],
       icon: "ðŸ”‘",
       clues: {
         easy: ["C'est un objet", "On la tient dans la main"],
         medium: ["Elle ouvre une porte", "On la garde dans la poche"],
-        hard: ["Elle tourne dans une serrure", "On l'attache parfois Ã  un porte-clÃ©s"]
+        hard: ["Elle tourne dans une serrure", "On l'attache parfois à un porte-clés"]
       },
-      facts: ["Une clÃ© permet d'ouvrir ou fermer une porte.", "Il existe des clÃ©s de formes diffÃ©rentes."]
+      facts: ["Une clé permet d'ouvrir ou fermer une porte.", "Il existe des clés de formes différentes."]
     },
     {
       id: "sac_a_dos",
-      label: "Sac Ã  dos",
-      aliases: ["sac Ã  dos", "sac a dos", "un sac Ã  dos"],
+      label: "Sac à dos",
+      aliases: ["sac à dos", "sac a dos", "un sac à dos"],
       icon: "ðŸŽ’",
       clues: {
         easy: ["C'est un objet", "On le porte"],
         medium: ["Il a des bretelles", "On y met ses affaires"],
-        hard: ["On l'utilise pour aller Ã  l'Ã©cole", "Il se porte sur le dos"]
+        hard: ["On l'utilise pour aller à l'école", "Il se porte sur le dos"]
       },
-      facts: ["Le sac Ã  dos aide Ã  transporter des affaires.", "Il faut bien le rÃ©gler sur les Ã©paules."]
+      facts: ["Le sac à dos aide à transporter des affaires.", "Il faut bien le régler sur les épaules."]
     },
     {
       id: "telephone",
-      label: "TÃ©lÃ©phone",
-      aliases: ["telephone", "tÃ©lÃ©phone", "un tÃ©lÃ©phone"],
+      label: "Téléphone",
+      aliases: ["telephone", "téléphone", "un téléphone"],
       icon: "ðŸ“±",
       clues: {
         easy: ["C'est un objet", "On parle avec"],
         medium: ["Il sonne", "Il tient dans la main"],
-        hard: ["On peut appeler quelqu'un", "Il a un Ã©cran"]
+        hard: ["On peut appeler quelqu'un", "Il a un écran"]
       },
-      facts: ["Le tÃ©lÃ©phone sert Ã  communiquer Ã  distance.", "On peut aussi envoyer des messages."]
+      facts: ["Le téléphone sert à communiquer à distance.", "On peut aussi envoyer des messages."]
     },
     {
       id: "montgolfiere",
-      label: "MontgolfiÃ¨re",
-      aliases: ["montgolfiere", "montgolfiÃ¨re", "une montgolfiÃ¨re"],
+      label: "Montgolfière",
+      aliases: ["montgolfiere", "montgolfière", "une montgolfière"],
       icon: "ðŸŽˆ",
       clues: {
         easy: ["C'est un objet volant", "Elle est grande"],
         medium: ["Elle est remplie d'air chaud", "Elle monte dans le ciel"],
-        hard: ["Elle transporte des personnes", "On la voit dans les fÃªtes"]
+        hard: ["Elle transporte des personnes", "On la voit dans les fêtes"]
       },
-      facts: ["La montgolfiÃ¨re vole grÃ¢ce Ã  l'air chaud.", "Elle se dÃ©place avec le vent."]
+      facts: ["La montgolfière vole grâce à l'air chaud.", "Elle se déplace avec le vent."]
     },
     {
       id: "crayon",
@@ -513,9 +542,9 @@ const DATA = {
       clues: {
         easy: ["C'est un objet", "On peut dessiner avec"],
         medium: ["Il est en bois", "Il a une mine"],
-        hard: ["On le taille", "On l'utilise Ã  l'Ã©cole"]
+        hard: ["On le taille", "On l'utilise à l'école"]
       },
-      facts: ["Un crayon sert Ã  Ã©crire ou dessiner.", "On peut l'effacer avec une gomme."]
+      facts: ["Un crayon sert à écrire ou dessiner.", "On peut l'effacer avec une gomme."]
     },
     {
       id: "ordinateur",
@@ -523,11 +552,11 @@ const DATA = {
       aliases: ["ordinateur", "un ordinateur", "pc"],
       icon: "ðŸ’»",
       clues: {
-        easy: ["C'est un objet", "Il a un Ã©cran"],
+        easy: ["C'est un objet", "Il a un écran"],
         medium: ["On peut taper dessus", "Il peut afficher des images"],
         hard: ["On l'utilise pour travailler", "Il peut aller sur Internet"]
       },
-      facts: ["Un ordinateur sert Ã  faire beaucoup de choses.", "Il peut jouer de la musique."]
+      facts: ["Un ordinateur sert à faire beaucoup de choses.", "Il peut jouer de la musique."]
     },
     {
       id: "chaussure",
@@ -536,10 +565,10 @@ const DATA = {
       icon: "ðŸ‘Ÿ",
       clues: {
         easy: ["C'est un objet", "On le porte"],
-        medium: ["Il protÃ¨ge les pieds", "Il va par paire"],
+        medium: ["Il protège les pieds", "Il va par paire"],
         hard: ["On le met pour marcher", "Il peut avoir des lacets"]
       },
-      facts: ["Les chaussures protÃ¨gent les pieds.", "Elles existent en plusieurs tailles."]
+      facts: ["Les chaussures protègent les pieds.", "Elles existent en plusieurs tailles."]
     },
     {
       id: "casque",
@@ -547,11 +576,11 @@ const DATA = {
       aliases: ["casque", "un casque", "le casque"],
       icon: "ðŸª–",
       clues: {
-        easy: ["C'est un objet", "On le met sur la tÃªte"],
-        medium: ["Il protÃ¨ge", "Il peut Ãªtre en plastique"],
-        hard: ["On le porte pour faire du vÃ©lo", "Il aide Ã  la sÃ©curitÃ©"]
+        easy: ["C'est un objet", "On le met sur la tête"],
+        medium: ["Il protège", "Il peut être en plastique"],
+        hard: ["On le porte pour faire du vélo", "Il aide à la sécurité"]
       },
-      facts: ["Le casque protÃ¨ge la tÃªte.", "Il est important pour la sÃ©curitÃ©."]
+      facts: ["Le casque protège la tête.", "Il est important pour la sécurité."]
     }
   ],
   aliment: [
@@ -562,7 +591,7 @@ const DATA = {
       icon: "ðŸŽ",
       clues: {
         easy: ["C'est un fruit", "Il est croquant"],
-        medium: ["Il peut Ãªtre rouge ou vert", "On le met dans un panier"],
+        medium: ["Il peut être rouge ou vert", "On le met dans un panier"],
         hard: ["Il pousse sur un pommier", "Il peut faire des tartes"]
       },
       facts: ["La pomme pousse sur un pommier.", "On peut la manger crue ou cuite."]
@@ -575,9 +604,9 @@ const DATA = {
       clues: {
         easy: ["C'est un fruit", "Il est jaune"],
         medium: ["Il est long", "Il a une peau"],
-        hard: ["On l'Ã©pluche", "Il pousse dans les pays chauds"]
+        hard: ["On l'épluche", "Il pousse dans les pays chauds"]
       },
-      facts: ["La banane donne beaucoup d'Ã©nergie.", "Elle pousse en grappes."]
+      facts: ["La banane donne beaucoup d'énergie.", "Elle pousse en grappes."]
     },
     {
       id: "fraise",
@@ -586,10 +615,10 @@ const DATA = {
       icon: "🍓",
       clues: {
         easy: ["C'est un fruit", "Elle est rouge"],
-        medium: ["Elle a des petites graines", "Elle est sucrÃ©e"],
+        medium: ["Elle a des petites graines", "Elle est sucrée"],
         hard: ["On la met dans les desserts", "Elle pousse au printemps"]
       },
-      facts: ["La fraise est un fruit trÃ¨s parfumÃ©.", "Elle pousse prÃ¨s du sol."]
+      facts: ["La fraise est un fruit très parfumé.", "Elle pousse près du sol."]
     },
     {
       id: "orange",
@@ -598,7 +627,7 @@ const DATA = {
       icon: "ðŸŠ",
       clues: {
         easy: ["C'est un fruit", "Il est rond"],
-        medium: ["Il est orange", "Il a une peau Ã©paisse"],
+        medium: ["Il est orange", "Il a une peau épaisse"],
         hard: ["On le presse pour faire du jus", "Il pousse sur un oranger"]
       },
       facts: ["L'orange est riche en vitamine C.", "On la mange en quartiers."]
@@ -610,10 +639,10 @@ const DATA = {
       icon: "🍇",
       clues: {
         easy: ["C'est un fruit", "Il pousse en grappes"],
-        medium: ["Il peut Ãªtre vert ou violet", "Il est petit"],
+        medium: ["Il peut être vert ou violet", "Il est petit"],
         hard: ["On en fait du jus", "Il pousse sur une vigne"]
       },
-      facts: ["Le raisin pousse sur la vigne.", "Il est souvent utilisÃ© pour faire du jus."]
+      facts: ["Le raisin pousse sur la vigne.", "Il est souvent utilisé pour faire du jus."]
     },
     {
       id: "poire",
@@ -625,19 +654,19 @@ const DATA = {
         medium: ["Il a une forme de goutte", "Il est vert ou jaune"],
         hard: ["Il pousse sur un poirier", "On le mange en dessert"]
       },
-      facts: ["La poire est souvent trÃ¨s juteuse.", "On la trouve Ã  la fin de l'Ã©tÃ©."]
+      facts: ["La poire est souvent très juteuse.", "On la trouve à la fin de l'été."]
     },
     {
       id: "pasteque",
-      label: "PastÃ¨que",
-      aliases: ["pasteque", "pastÃ¨que", "une pastÃ¨que"],
+      label: "Pastèque",
+      aliases: ["pasteque", "pastèque", "une pastèque"],
       icon: "ðŸ‰",
       clues: {
-        easy: ["C'est un fruit", "Il est trÃ¨s gros"],
+        easy: ["C'est un fruit", "Il est très gros"],
         medium: ["Il est vert dehors", "Il est rouge dedans"],
-        hard: ["Il a beaucoup de pÃ©pins", "On le mange en Ã©tÃ©"]
+        hard: ["Il a beaucoup de pépins", "On le mange en été"]
       },
-      facts: ["La pastÃ¨que contient beaucoup d'eau.", "Elle est parfaite quand il fait chaud."]
+      facts: ["La pastèque contient beaucoup d'eau.", "Elle est parfaite quand il fait chaud."]
     },
     {
       id: "citron",
@@ -646,10 +675,10 @@ const DATA = {
       icon: "ðŸ‹",
       clues: {
         easy: ["C'est un fruit", "Il est jaune"],
-        medium: ["Il est acide", "Il a une peau Ã©paisse"],
+        medium: ["Il est acide", "Il a une peau épaisse"],
         hard: ["On l'utilise pour faire du jus", "Il pousse sur un citronnier"]
       },
-      facts: ["Le citron est trÃ¨s acide.", "Il sert Ã  parfumer de nombreux plats."]
+      facts: ["Le citron est très acide.", "Il sert à parfumer de nombreux plats."]
     },
     {
       id: "cerise",
@@ -659,9 +688,9 @@ const DATA = {
       clues: {
         easy: ["C'est un fruit", "Elle est petite"],
         medium: ["Elle est rouge", "Elle pousse par deux"],
-        hard: ["On la met sur les gÃ¢teaux", "Elle a un noyau"]
+        hard: ["On la met sur les gâteaux", "Elle a un noyau"]
       },
-      facts: ["La cerise a un noyau dur.", "On la mange souvent au dÃ©but de l'Ã©tÃ©."]
+      facts: ["La cerise a un noyau dur.", "On la mange souvent au début de l'été."]
     },
     {
       id: "ananas",
@@ -673,7 +702,7 @@ const DATA = {
         medium: ["Il a une peau piquante", "Il est jaune dedans"],
         hard: ["Il a une couronne de feuilles", "Il vient des pays chauds"]
       },
-      facts: ["L'ananas pousse dans les rÃ©gions tropicales.", "Il est trÃ¨s sucrÃ©."]
+      facts: ["L'ananas pousse dans les régions tropicales.", "Il est très sucré."]
     },
     {
       id: "kiwi",
@@ -683,7 +712,7 @@ const DATA = {
       clues: {
         easy: ["C'est un fruit", "Il est petit"],
         medium: ["Il a une peau marron", "Il est vert dedans"],
-        hard: ["Il a des petites graines noires", "On le mange Ã  la cuillÃ¨re"]
+        hard: ["Il a des petites graines noires", "On le mange à la cuillère"]
       },
       facts: ["Le kiwi est riche en vitamine C.", "On peut le couper en deux."]
     },
@@ -693,23 +722,23 @@ const DATA = {
       aliases: ["mangue", "une mangue", "la mangue"],
       icon: "ðŸ¥­",
       clues: {
-        easy: ["C'est un fruit", "Il est sucrÃ©"],
+        easy: ["C'est un fruit", "Il est sucré"],
         medium: ["Il est jaune ou orange", "Il vient des pays chauds"],
         hard: ["Il a un gros noyau", "On le coupe en morceaux"]
       },
-      facts: ["La mangue est un fruit tropical.", "Elle est trÃ¨s parfumÃ©e."]
+      facts: ["La mangue est un fruit tropical.", "Elle est très parfumée."]
     },
     {
       id: "peche",
-      label: "PÃªche",
-      aliases: ["peche", "pÃªche", "une pÃªche", "la pÃªche"],
+      label: "Pêche",
+      aliases: ["peche", "pêche", "une pêche", "la pêche"],
       icon: "ðŸ‘",
       clues: {
         easy: ["C'est un fruit", "Il est doux"],
         medium: ["Il a une peau velue", "Il est rond"],
-        hard: ["Il a un noyau", "On le mange en Ã©tÃ©"]
+        hard: ["Il a un noyau", "On le mange en été"]
       },
-      facts: ["La pÃªche est trÃ¨s juteuse.", "Elle pousse sur un pÃªcher."]
+      facts: ["La pêche est très juteuse.", "Elle pousse sur un pêcher."]
     },
     {
       id: "abricot",
@@ -721,7 +750,7 @@ const DATA = {
         medium: ["Il est orange", "Il est doux"],
         hard: ["Il a un noyau", "On en fait des confitures"]
       },
-      facts: ["L'abricot est un fruit d'Ã©tÃ©.", "Il est souvent utilisÃ© en compote."]
+      facts: ["L'abricot est un fruit d'été.", "Il est souvent utilisé en compote."]
     }
   ],
   legume: [
@@ -731,7 +760,7 @@ const DATA = {
       aliases: ["carotte", "une carotte", "la carotte"],
       icon: "🥕",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est orange"],
+        easy: ["C'est un légume", "Il est orange"],
         medium: ["Il pousse dans la terre", "Il est croquant"],
         hard: ["Les lapins l'adorent", "On le met dans les salades"]
       },
@@ -743,11 +772,11 @@ const DATA = {
       aliases: ["tomate", "une tomate", "la tomate"],
       icon: "🍅",
       clues: {
-        easy: ["C'est un lÃ©gume", "Elle est rouge"],
+        easy: ["C'est un légume", "Elle est rouge"],
         medium: ["Elle est ronde", "Elle est juteuse"],
-        hard: ["On la met dans les salades", "Elle pousse en Ã©tÃ©"]
+        hard: ["On la met dans les salades", "Elle pousse en été"]
       },
-      facts: ["La tomate est trÃ¨s utilisÃ©e en cuisine.", "Elle pousse sur un plant."]
+      facts: ["La tomate est très utilisée en cuisine.", "Elle pousse sur un plant."]
     },
     {
       id: "concombre",
@@ -755,11 +784,11 @@ const DATA = {
       aliases: ["concombre", "un concombre", "le concombre"],
       icon: "🥒",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
+        easy: ["C'est un légume", "Il est vert"],
         medium: ["Il est long", "Il est frais"],
         hard: ["On le met dans les salades", "Il pousse dans le jardin"]
       },
-      facts: ["Le concombre est composÃ© d'eau.", "Il est trÃ¨s rafraÃ®chissant."]
+      facts: ["Le concombre est composé d'eau.", "Il est très rafraîchissant."]
     },
     {
       id: "brocoli",
@@ -767,8 +796,8 @@ const DATA = {
       aliases: ["brocoli", "un brocoli", "le brocoli"],
       icon: "ðŸ¥¦",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
-        medium: ["Il ressemble Ã  un arbre", "On le mange cuit"],
+        easy: ["C'est un légume", "Il est vert"],
+        medium: ["Il ressemble à un arbre", "On le mange cuit"],
         hard: ["Il est plein de petites fleurettes", "On le met dans les gratins"]
       },
       facts: ["Le brocoli est riche en vitamines.", "Il fait partie de la famille des choux."]
@@ -779,11 +808,11 @@ const DATA = {
       aliases: ["salade", "une salade", "la salade", "laitue"],
       icon: "ðŸ¥¬",
       clues: {
-        easy: ["C'est un lÃ©gume", "Elle est verte"],
+        easy: ["C'est un légume", "Elle est verte"],
         medium: ["Elle a beaucoup de feuilles", "Elle est croquante"],
         hard: ["On la met dans un saladier", "On la mange souvent crue"]
       },
-      facts: ["La salade est trÃ¨s lÃ©gÃ¨re.", "Elle pousse en rosettes."]
+      facts: ["La salade est très légère.", "Elle pousse en rosettes."]
     },
     {
       id: "poivron",
@@ -791,11 +820,11 @@ const DATA = {
       aliases: ["poivron", "un poivron", "le poivron"],
       icon: "ðŸ«‘",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est colorÃ©"],
-        medium: ["Il peut Ãªtre rouge ou vert", "Il est creux"],
+        easy: ["C'est un légume", "Il est coloré"],
+        medium: ["Il peut être rouge ou vert", "Il est creux"],
         hard: ["Il contient des graines", "On le coupe pour le cuisiner"]
       },
-      facts: ["Le poivron a un goÃ»t doux.", "Il est croquant cru."]
+      facts: ["Le poivron a un goût doux.", "Il est croquant cru."]
     },
     {
       id: "aubergine",
@@ -803,11 +832,11 @@ const DATA = {
       aliases: ["aubergine", "une aubergine", "l'aubergine"],
       icon: "ðŸ†",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est violet"],
+        easy: ["C'est un légume", "Il est violet"],
         medium: ["Il est long", "Il est brillant"],
         hard: ["On le cuisine au four", "Il a une peau lisse"]
       },
-      facts: ["L'aubergine se mange cuite.", "Elle est trÃ¨s utilisÃ©e en Ã©tÃ©."]
+      facts: ["L'aubergine se mange cuite.", "Elle est très utilisée en été."]
     },
     {
       id: "courgette",
@@ -815,11 +844,11 @@ const DATA = {
       aliases: ["courgette", "une courgette", "la courgette"],
       icon: "ðŸ¥’",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
+        easy: ["C'est un légume", "Il est vert"],
         medium: ["Il est long", "Il est doux"],
         hard: ["On le met dans les ratatouilles", "On peut le griller"]
       },
-      facts: ["La courgette est un lÃ©gume d'Ã©tÃ©.", "On la mange cuite ou crue."]
+      facts: ["La courgette est un légume d'été.", "On la mange cuite ou crue."]
     },
     {
       id: "pomme_de_terre",
@@ -827,23 +856,23 @@ const DATA = {
       aliases: ["pomme de terre", "patate", "une pomme de terre"],
       icon: "ðŸ¥”",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il pousse dans la terre"],
+        easy: ["C'est un légume", "Il pousse dans la terre"],
         medium: ["Il est marron", "On le cuisine"],
-        hard: ["On en fait des frites", "On en fait de la purÃ©e"]
+        hard: ["On en fait des frites", "On en fait de la purée"]
       },
-      facts: ["La pomme de terre est trÃ¨s utilisÃ©e en cuisine.", "On la mange en frites ou en purÃ©e."]
+      facts: ["La pomme de terre est très utilisée en cuisine.", "On la mange en frites ou en purée."]
     },
     {
       id: "mais",
-      label: "MaÃ¯s",
-      aliases: ["mais", "maÃ¯s", "un maÃ¯s", "Ã©pi de maÃ¯s"],
+      label: "Maïs",
+      aliases: ["mais", "maïs", "un maïs", "épi de maïs"],
       icon: "ðŸŒ½",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est jaune"],
-        medium: ["Il pousse en Ã©pis", "Il a des grains"],
-        hard: ["On le mange en pop-corn", "On le fait cuire Ã  l'eau"]
+        easy: ["C'est un légume", "Il est jaune"],
+        medium: ["Il pousse en épis", "Il a des grains"],
+        hard: ["On le mange en pop-corn", "On le fait cuire à l'eau"]
       },
-      facts: ["Le maÃ¯s pousse en Ã©pis.", "On peut le manger en grains ou en pop-corn."]
+      facts: ["Le maïs pousse en épis.", "On peut le manger en grains ou en pop-corn."]
     },
     {
       id: "petits_pois",
@@ -851,9 +880,9 @@ const DATA = {
       aliases: ["petits pois", "petit pois", "des petits pois"],
       icon: "ðŸŸ¢",
       clues: {
-        easy: ["C'est un lÃ©gume", "Ils sont petits"],
+        easy: ["C'est un légume", "Ils sont petits"],
         medium: ["Ils sont verts", "On les mange en grains"],
-        hard: ["Ils sortent d'une gousse", "On les met dans les purÃ©es"]
+        hard: ["Ils sortent d'une gousse", "On les met dans les purées"]
       },
       facts: ["Les petits pois poussent dans des gousses.", "Ils sont souvent servis avec des carottes."]
     },
@@ -863,7 +892,7 @@ const DATA = {
       aliases: ["haricot vert", "haricots verts", "un haricot vert"],
       icon: "ðŸ«˜",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
+        easy: ["C'est un légume", "Il est vert"],
         medium: ["Il est long", "On le mange cuit"],
         hard: ["Il pousse dans une gousse", "On le sert souvent en accompagnement"]
       },
@@ -875,7 +904,7 @@ const DATA = {
       aliases: ["oignon", "un oignon", "l'oignon"],
       icon: "ðŸ§…",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il a des couches"],
+        easy: ["C'est un légume", "Il a des couches"],
         medium: ["Il peut faire pleurer", "Il est rond"],
         hard: ["On le coupe pour cuisiner", "Il a une peau fine"]
       },
@@ -886,11 +915,11 @@ const DATA = {
     {
       id: "maman",
       label: "Ma maman",
-      aliases: ["maman", "ma maman", "maman chÃ©rie"],
+      aliases: ["maman", "ma maman", "maman chérie"],
       icon: "ðŸ‘©",
       clues: {
         easy: ["C'est une personne", "Elle s'occupe de moi"],
-        medium: ["Elle me fait des cÃ¢lins", "Elle veille sur moi"],
+        medium: ["Elle me fait des câlins", "Elle veille sur moi"],
         hard: ["Elle est dans ma famille", "Je l'appelle tous les jours"]
       },
       facts: ["La famille prend soin les uns des autres.", "Dire merci fait toujours plaisir."]
@@ -898,7 +927,7 @@ const DATA = {
     {
       id: "papa",
       label: "Mon papa",
-      aliases: ["papa", "mon papa", "papa chÃ©ri"],
+      aliases: ["papa", "mon papa", "papa chéri"],
       icon: "ðŸ‘¨",
       clues: {
         easy: ["C'est une personne", "Il s'occupe de moi"],
@@ -914,46 +943,46 @@ const DATA = {
       icon: "ðŸ‘§",
       clues: {
         easy: ["C'est une personne", "Elle est dans ma famille"],
-        medium: ["On joue souvent ensemble", "Elle peut Ãªtre plus grande ou plus petite"],
+        medium: ["On joue souvent ensemble", "Elle peut être plus grande ou plus petite"],
         hard: ["Elle est ma soeur", "On partage des secrets"]
       },
       facts: ["Avoir une soeur, c'est partager plein de moments.", "On peut se raconter des histoires."]
     },
     {
       id: "frere",
-      label: "Mon frÃ¨re",
-      aliases: ["frere", "frÃ¨re", "mon frere", "mon frÃ¨re"],
+      label: "Mon frère",
+      aliases: ["frere", "frère", "mon frere", "mon frère"],
       icon: "ðŸ‘¦",
       clues: {
         easy: ["C'est une personne", "Il est dans ma famille"],
-        medium: ["On joue souvent ensemble", "Il peut Ãªtre plus grand ou plus petit"],
-        hard: ["Il est mon frÃ¨re", "On partage des jeux"]
+        medium: ["On joue souvent ensemble", "Il peut être plus grand ou plus petit"],
+        hard: ["Il est mon frère", "On partage des jeux"]
       },
-      facts: ["Un frÃ¨re peut Ãªtre un super partenaire de jeu.", "On apprend Ã  partager ensemble."]
+      facts: ["Un frère peut être un super partenaire de jeu.", "On apprend à partager ensemble."]
     },
     {
       id: "grand_mere",
-      label: "Ma grand-mÃ¨re",
-      aliases: ["grand-mere", "grand-mÃ¨re", "mamie", "ma grand-mÃ¨re"],
+      label: "Ma grand-mère",
+      aliases: ["grand-mere", "grand-mère", "mamie", "ma grand-mère"],
       icon: "ðŸ‘µ",
       clues: {
         easy: ["C'est une personne", "Elle est dans ma famille"],
-        medium: ["Elle raconte des histoires", "Elle est trÃ¨s gentille"],
+        medium: ["Elle raconte des histoires", "Elle est très gentille"],
         hard: ["C'est la maman de papa ou maman", "On l'appelle mamie"]
       },
       facts: ["Les grands-parents aiment transmettre des souvenirs.", "On peut apprendre beaucoup avec eux."]
     },
     {
       id: "grand_pere",
-      label: "Mon grand-pÃ¨re",
-      aliases: ["grand-pere", "grand-pÃ¨re", "papy", "mon grand-pÃ¨re"],
+      label: "Mon grand-père",
+      aliases: ["grand-pere", "grand-père", "papy", "mon grand-père"],
       icon: "ðŸ‘´",
       clues: {
         easy: ["C'est une personne", "Il est dans ma famille"],
-        medium: ["Il raconte des histoires", "Il est trÃ¨s gentil"],
+        medium: ["Il raconte des histoires", "Il est très gentil"],
         hard: ["C'est le papa de papa ou maman", "On l'appelle papy"]
       },
-      facts: ["Les grands-parents aiment jouer avec leurs petits-enfants.", "Ils ont beaucoup d'histoires Ã  raconter."]
+      facts: ["Les grands-parents aiment jouer avec leurs petits-enfants.", "Ils ont beaucoup d'histoires à raconter."]
     },
     {
       id: "cousin",
@@ -962,7 +991,7 @@ const DATA = {
       icon: "ðŸ§’",
       clues: {
         easy: ["C'est une personne", "Il est dans ma famille"],
-        medium: ["On joue pendant les fÃªtes", "Il est de ma gÃ©nÃ©ration"],
+        medium: ["On joue pendant les fêtes", "Il est de ma génération"],
         hard: ["C'est le fils d'un oncle ou d'une tante", "On le voit souvent en famille"]
       },
       facts: ["Les cousins sont souvent des amis de famille.", "On partage de bons moments ensemble."]
@@ -974,7 +1003,7 @@ const DATA = {
       icon: "ðŸ‘§",
       clues: {
         easy: ["C'est une personne", "Elle est dans ma famille"],
-        medium: ["On joue pendant les fÃªtes", "Elle est de ma gÃ©nÃ©ration"],
+        medium: ["On joue pendant les fêtes", "Elle est de ma génération"],
         hard: ["C'est la fille d'un oncle ou d'une tante", "On la voit souvent en famille"]
       },
       facts: ["Les cousins et cousines font partie de la famille.", "On peut jouer ensemble pendant les vacances."]
@@ -998,10 +1027,10 @@ const DATA = {
       icon: "ðŸª†",
       clues: {
         easy: ["C'est un personnage", "Il est en bois"],
-        medium: ["Son nez grandit", "Il veut devenir un vrai garÃ§on"],
-        hard: ["Il a un pÃ¨re qui s'appelle Gepetto", "Il dit parfois des mensonges"]
+        medium: ["Son nez grandit", "Il veut devenir un vrai garçon"],
+        hard: ["Il a un père qui s'appelle Gepetto", "Il dit parfois des mensonges"]
       },
-      facts: ["Pinocchio est un conte trÃ¨s connu.", "Il apprend Ã  dire la vÃ©ritÃ©."]
+      facts: ["Pinocchio est un conte très connu.", "Il apprend à dire la vérité."]
     },
     {
       id: "cendrillon",
@@ -1010,10 +1039,10 @@ const DATA = {
       icon: "ðŸ‘¸",
       clues: {
         easy: ["C'est une princesse", "Elle porte une robe"],
-        medium: ["Elle a une marraine fÃ©e", "Elle va au bal"],
+        medium: ["Elle a une marraine fée", "Elle va au bal"],
         hard: ["Elle perd une chaussure", "Elle rentre avant minuit"]
       },
-      facts: ["Cendrillon est un conte traditionnel.", "Elle a une chaussure trÃ¨s cÃ©lÃ¨bre."]
+      facts: ["Cendrillon est un conte traditionnel.", "Elle a une chaussure très célèbre."]
     },
     {
       id: "peter_pan",
@@ -1023,7 +1052,7 @@ const DATA = {
       clues: {
         easy: ["C'est un personnage", "Il vole"],
         medium: ["Il ne veut pas grandir", "Il vit dans un monde imaginaire"],
-        hard: ["Il a une amie fÃ©e", "Il porte un chapeau vert"]
+        hard: ["Il a une amie fée", "Il porte un chapeau vert"]
       },
       facts: ["Peter Pan vit au Pays imaginaire.", "Il adore l'aventure."]
     },
@@ -1035,9 +1064,9 @@ const DATA = {
       clues: {
         easy: ["C'est un personnage", "Il a un ami magique"],
         medium: ["Il a une lampe", "Il vit dans une ville chaude"],
-        hard: ["Il rencontre un gÃ©nie", "Il fait des vÅ“ux"]
+        hard: ["Il rencontre un génie", "Il fait des vÅ“ux"]
       },
-      facts: ["Aladin trouve une lampe magique.", "Le gÃ©nie l'aide dans ses aventures."]
+      facts: ["Aladin trouve une lampe magique.", "Le génie l'aide dans ses aventures."]
     },
     {
       id: "petit_prince",
@@ -1045,11 +1074,11 @@ const DATA = {
       aliases: ["petit prince", "le petit prince"],
       icon: "â­",
       clues: {
-        easy: ["C'est un personnage", "Il vient d'une Ã©toile"],
+        easy: ["C'est un personnage", "Il vient d'une étoile"],
         medium: ["Il aime une rose", "Il voyage dans l'espace"],
-        hard: ["Il rencontre un renard", "Il parle d'amitiÃ©"]
+        hard: ["Il rencontre un renard", "Il parle d'amitié"]
       },
-      facts: ["Le Petit Prince est un livre cÃ©lÃ¨bre.", "Il parle d'amitiÃ© et d'imagination."]
+      facts: ["Le Petit Prince est un livre célèbre.", "Il parle d'amitié et d'imagination."]
     },
     {
       id: "princesse",
@@ -1058,22 +1087,22 @@ const DATA = {
       icon: "ðŸ‘‘",
       clues: {
         easy: ["C'est un personnage", "Elle porte une couronne"],
-        medium: ["Elle vit dans un chÃ¢teau", "Elle a une robe"],
+        medium: ["Elle vit dans un château", "Elle a une robe"],
         hard: ["Elle est gentille", "On la voit dans les contes"]
       },
-      facts: ["Les princesses apparaissent souvent dans les contes.", "Elles vivent dans des chÃ¢teaux."]
+      facts: ["Les princesses apparaissent souvent dans les contes.", "Elles vivent dans des châteaux."]
     },
     {
       id: "super_heros",
-      label: "Super-hÃ©ros",
-      aliases: ["super hero", "super-hÃ©ros", "super heros"],
+      label: "Super-héros",
+      aliases: ["super hero", "super-héros", "super heros"],
       icon: "ðŸ¦¸",
       clues: {
         easy: ["C'est un personnage", "Il aide les gens"],
         medium: ["Il a des pouvoirs", "Il porte un costume"],
-        hard: ["Il protÃ¨ge la ville", "Il est trÃ¨s courageux"]
+        hard: ["Il protège la ville", "Il est très courageux"]
       },
-      facts: ["Les super-hÃ©ros protÃ¨gent les personnes.", "Ils aiment la justice."]
+      facts: ["Les super-héros protègent les personnes.", "Ils aiment la justice."]
     },
     {
       id: "pirate",
@@ -1082,10 +1111,10 @@ const DATA = {
       icon: "ðŸ´â€â˜ ï¸",
       clues: {
         easy: ["C'est un personnage", "Il voyage en bateau"],
-        medium: ["Il cherche un trÃ©sor", "Il porte parfois un chapeau"],
+        medium: ["Il cherche un trésor", "Il porte parfois un chapeau"],
         hard: ["Il a un drapeau", "Il adore l'aventure"]
       },
-      facts: ["Les pirates cherchent souvent des trÃ©sors.", "Ils naviguent sur la mer."]
+      facts: ["Les pirates cherchent souvent des trésors.", "Ils naviguent sur la mer."]
     }
   ]
 };
@@ -1094,27 +1123,27 @@ const EXTRA_DATA = {
   animal: [
     {
       id: "ecureuil",
-      label: "Ã‰cureuil",
-      aliases: ["ecureuil", "Ã©cureuil", "un Ã©cureuil"],
+      label: "Écureuil",
+      aliases: ["ecureuil", "écureuil", "un écureuil"],
       icon: "ðŸ¿ï¸",
       clues: {
         easy: ["C'est un animal", "Il est petit"],
         medium: ["Il grimpe aux arbres", "Il mange des noisettes"],
         hard: ["Il a une queue en panache", "Il cache sa nourriture"]
       },
-      facts: ["L'Ã©cureuil aime les forÃªts.", "Il saute de branche en branche."]
+      facts: ["L'écureuil aime les forêts.", "Il saute de branche en branche."]
     },
     {
       id: "zebre",
-      label: "ZÃ¨bre",
-      aliases: ["zebre", "zÃ¨bre", "un zÃ¨bre"],
+      label: "Zèbre",
+      aliases: ["zebre", "zèbre", "un zèbre"],
       icon: "ðŸ¦“",
       clues: {
         easy: ["C'est un animal", "Il est noir et blanc"],
         medium: ["Il vit en troupeau", "Il aime courir"],
         hard: ["Il vit dans la savane", "Il ressemble au cheval"]
       },
-      facts: ["Le zÃ¨bre a des rayures uniques.", "Il vit en Afrique."]
+      facts: ["Le zèbre a des rayures uniques.", "Il vit en Afrique."]
     },
     {
       id: "koala",
@@ -1135,22 +1164,22 @@ const EXTRA_DATA = {
       icon: "ðŸ¯",
       clues: {
         easy: ["C'est un animal", "Il a des rayures"],
-        medium: ["Il est carnivore", "Il est trÃ¨s fort"],
-        hard: ["Il vit en Asie", "Il est un grand fÃ©lin"]
+        medium: ["Il est carnivore", "Il est très fort"],
+        hard: ["Il vit en Asie", "Il est un grand félin"]
       },
-      facts: ["Le tigre est un grand fÃ©lin.", "Il aime se cacher dans la jungle."]
+      facts: ["Le tigre est un grand félin.", "Il aime se cacher dans la jungle."]
     },
     {
       id: "herisson",
-      label: "HÃ©risson",
-      aliases: ["herisson", "hÃ©risson", "un hÃ©risson"],
+      label: "Hérisson",
+      aliases: ["herisson", "hérisson", "un hérisson"],
       icon: "ðŸ¦”",
       clues: {
         easy: ["C'est un animal", "Il est petit"],
         medium: ["Il a des piquants", "Il se roule en boule"],
         hard: ["Il vit dans les jardins", "Il sort surtout la nuit"]
       },
-      facts: ["Le hÃ©risson se protÃ¨ge avec ses piquants.", "Il aime les jardins."]
+      facts: ["Le hérisson se protège avec ses piquants.", "Il aime les jardins."]
     },
     {
       id: "loutre",
@@ -1159,10 +1188,10 @@ const EXTRA_DATA = {
       icon: "ðŸ¦¦",
       clues: {
         easy: ["C'est un animal", "Il aime l'eau"],
-        medium: ["Il nage trÃ¨s bien", "Il est joueur"],
-        hard: ["Il vit prÃ¨s des riviÃ¨res", "Il a une fourrure douce"]
+        medium: ["Il nage très bien", "Il est joueur"],
+        hard: ["Il vit près des rivières", "Il a une fourrure douce"]
       },
-      facts: ["La loutre est trÃ¨s agile dans l'eau.", "Elle aime jouer."]
+      facts: ["La loutre est très agile dans l'eau.", "Elle aime jouer."]
     },
     {
       id: "paon",
@@ -1170,11 +1199,11 @@ const EXTRA_DATA = {
       aliases: ["paon", "un paon", "le paon"],
       icon: "ðŸ¦š",
       clues: {
-        easy: ["C'est un oiseau", "Il est colorÃ©"],
+        easy: ["C'est un oiseau", "Il est coloré"],
         medium: ["Il a une grande queue", "Il ouvre ses plumes"],
-        hard: ["Il montre sa roue", "Il est trÃ¨s beau"]
+        hard: ["Il montre sa roue", "Il est très beau"]
       },
-      facts: ["Le paon dÃ©ploie sa queue pour impressionner.", "Il a des plumes colorÃ©es."]
+      facts: ["Le paon déploie sa queue pour impressionner.", "Il a des plumes colorées."]
     },
     {
       id: "kangourou",
@@ -1184,21 +1213,21 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un animal", "Il saute"],
         medium: ["Il a une poche", "Il vit loin"],
-        hard: ["Il vient d'Australie", "Il est trÃ¨s rapide"]
+        hard: ["Il vient d'Australie", "Il est très rapide"]
       },
-      facts: ["Le kangourou porte son bÃ©bÃ© dans une poche.", "Il saute trÃ¨s loin."]
+      facts: ["Le kangourou porte son bébé dans une poche.", "Il saute très loin."]
     },
     {
       id: "chevre",
-      label: "ChÃ¨vre",
-      aliases: ["chevre", "chÃ¨vre", "une chÃ¨vre"],
+      label: "Chèvre",
+      aliases: ["chevre", "chèvre", "une chèvre"],
       icon: "ðŸ",
       clues: {
-        easy: ["C'est un animal", "Il vit Ã  la ferme"],
+        easy: ["C'est un animal", "Il vit à la ferme"],
         medium: ["Il a des cornes", "Il mange de l'herbe"],
         hard: ["Il donne du lait", "Il aime grimper"]
       },
-      facts: ["La chÃ¨vre peut grimper partout.", "Elle donne du lait."]
+      facts: ["La chèvre peut grimper partout.", "Elle donne du lait."]
     },
     {
       id: "poule",
@@ -1206,7 +1235,7 @@ const EXTRA_DATA = {
       aliases: ["poule", "une poule", "la poule"],
       icon: "ðŸ”",
       clues: {
-        easy: ["C'est un animal", "Elle vit Ã  la ferme"],
+        easy: ["C'est un animal", "Elle vit à la ferme"],
         medium: ["Elle pond des oeufs", "Elle picore"],
         hard: ["Elle a des plumes", "Elle fait cot-cot"]
       },
@@ -1218,11 +1247,11 @@ const EXTRA_DATA = {
       aliases: ["chevreuil", "un chevreuil"],
       icon: "ðŸ¦Œ",
       clues: {
-        easy: ["C'est un animal", "Il vit en forÃªt"],
+        easy: ["C'est un animal", "Il vit en forêt"],
         medium: ["Il est timide", "Il court vite"],
         hard: ["Il a des bois", "Il est marron"]
       },
-      facts: ["Le chevreuil vit dans les forÃªts.", "Il est trÃ¨s discret."]
+      facts: ["Le chevreuil vit dans les forêts.", "Il est très discret."]
     },
     {
       id: "hippopotame",
@@ -1234,7 +1263,7 @@ const EXTRA_DATA = {
         medium: ["Il aime l'eau", "Il est lourd"],
         hard: ["Il vit en Afrique", "Il a une grande bouche"]
       },
-      facts: ["L'hippopotame passe beaucoup de temps dans l'eau.", "Il est trÃ¨s fort."]
+      facts: ["L'hippopotame passe beaucoup de temps dans l'eau.", "Il est très fort."]
     },
     {
       id: "loup",
@@ -1243,10 +1272,10 @@ const EXTRA_DATA = {
       icon: "ðŸº",
       clues: {
         easy: ["C'est un animal", "Il fait hou-hou"],
-        medium: ["Il vit en forÃªt", "Il a des crocs"],
+        medium: ["Il vit en forêt", "Il a des crocs"],
         hard: ["Il vit parfois en meute", "Il ressemble au chien"]
       },
-      facts: ["Le loup vit souvent en groupe.", "Il a un trÃ¨s bon odorat."]
+      facts: ["Le loup vit souvent en groupe.", "Il a un très bon odorat."]
     },
     {
       id: "souris",
@@ -1256,9 +1285,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un animal", "Elle est petite"],
         medium: ["Elle aime le fromage", "Elle a une longue queue"],
-        hard: ["Elle se cache dans des petits trous", "Elle court trÃ¨s vite"]
+        hard: ["Elle se cache dans des petits trous", "Elle court très vite"]
       },
-      facts: ["La souris est trÃ¨s agile.", "Elle a de petites oreilles rondes."]
+      facts: ["La souris est très agile.", "Elle a de petites oreilles rondes."]
     },
     {
       id: "chauve_souris",
@@ -1267,10 +1296,10 @@ const EXTRA_DATA = {
       icon: "ðŸ¦‡",
       clues: {
         easy: ["C'est un animal", "Elle vole la nuit"],
-        medium: ["Elle vit dans les grottes", "Elle dort la tÃªte en bas"],
-        hard: ["Elle utilise l'Ã©cho pour se repÃ©rer", "Elle a des ailes de peau"]
+        medium: ["Elle vit dans les grottes", "Elle dort la tête en bas"],
+        hard: ["Elle utilise l'écho pour se repérer", "Elle a des ailes de peau"]
       },
-      facts: ["La chauve-souris est un mammifÃ¨re.", "Elle chasse souvent la nuit."]
+      facts: ["La chauve-souris est un mammifère.", "Elle chasse souvent la nuit."]
     },
     {
       id: "dromadaire",
@@ -1279,10 +1308,10 @@ const EXTRA_DATA = {
       icon: "ðŸª",
       clues: {
         easy: ["C'est un animal", "Il a une bosse"],
-        medium: ["Il vit dans le dÃ©sert", "Il peut marcher longtemps"],
+        medium: ["Il vit dans le désert", "Il peut marcher longtemps"],
         hard: ["Il garde de l'eau dans son corps", "On le voit dans les dunes"]
       },
-      facts: ["Le dromadaire vit dans les zones dÃ©sertiques.", "Sa bosse l'aide Ã  survivre."]
+      facts: ["Le dromadaire vit dans les zones désertiques.", "Sa bosse l'aide à survivre."]
     },
     {
       id: "flamant_rose",
@@ -1291,7 +1320,7 @@ const EXTRA_DATA = {
       icon: "ðŸ¦©",
       clues: {
         easy: ["C'est un oiseau", "Il est rose"],
-        medium: ["Il a de longues pattes", "Il vit prÃ¨s de l'eau"],
+        medium: ["Il a de longues pattes", "Il vit près de l'eau"],
         hard: ["Il se tient parfois sur une patte", "Il a un long cou"]
       },
       facts: ["Le flamant rose aime les lacs.", "Sa couleur vient de sa nourriture."]
@@ -1303,10 +1332,10 @@ const EXTRA_DATA = {
       icon: "ðŸ¸",
       clues: {
         easy: ["C'est un animal", "Elle saute"],
-        medium: ["Elle vit prÃ¨s de l'eau", "Elle fait croa-croa"],
+        medium: ["Elle vit près de l'eau", "Elle fait croa-croa"],
         hard: ["Elle a une peau lisse", "Elle mange des insectes"]
       },
-      facts: ["La grenouille aime les Ã©tangs.", "Elle peut sauter trÃ¨s loin."]
+      facts: ["La grenouille aime les étangs.", "Elle peut sauter très loin."]
     },
     {
       id: "paresseux",
@@ -1316,9 +1345,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un animal", "Il bouge lentement"],
         medium: ["Il vit dans les arbres", "Il aime dormir"],
-        hard: ["Il vient d'AmÃ©rique du Sud", "Il a de longues griffes"]
+        hard: ["Il vient d'Amérique du Sud", "Il a de longues griffes"]
       },
-      facts: ["Le paresseux se dÃ©place trÃ¨s lentement.", "Il passe beaucoup de temps dans les arbres."]
+      facts: ["Le paresseux se déplace très lentement.", "Il passe beaucoup de temps dans les arbres."]
     },
     {
       id: "raton_laveur",
@@ -1327,8 +1356,8 @@ const EXTRA_DATA = {
       icon: "ðŸ¦",
       clues: {
         easy: ["C'est un animal", "Il a un masque"],
-        medium: ["Il vit en forÃªt", "Il est nocturne"],
-        hard: ["Il a une queue rayÃ©e", "Il est trÃ¨s curieux"]
+        medium: ["Il vit en forêt", "Il est nocturne"],
+        hard: ["Il a une queue rayée", "Il est très curieux"]
       },
       facts: ["Le raton laveur est actif la nuit.", "Il fouille avec ses petites pattes."]
     },
@@ -1354,7 +1383,7 @@ const EXTRA_DATA = {
         medium: ["Il sort d'un oeuf", "Il est jaune"],
         hard: ["Il devient une poule", "Il fait piou-piou"]
       },
-      facts: ["Le poussin est le bÃ©bÃ© de la poule.", "Il aime rester au chaud."]
+      facts: ["Le poussin est le bébé de la poule.", "Il aime rester au chaud."]
     },
     {
       id: "hibou2",
@@ -1364,9 +1393,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un oiseau", "Il vit la nuit"],
         medium: ["Il a de grands yeux", "Il chasse en silence"],
-        hard: ["Il pousse un hululement", "Il aime les forÃªts"]
+        hard: ["Il pousse un hululement", "Il aime les forêts"]
       },
-      facts: ["Le hibou voit trÃ¨s bien la nuit.", "Il vole sans faire de bruit."]
+      facts: ["Le hibou voit très bien la nuit.", "Il vole sans faire de bruit."]
     },
     {
       id: "tortue2",
@@ -1376,9 +1405,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un animal", "Elle a une carapace"],
         medium: ["Elle avance lentement", "Elle aime le soleil"],
-        hard: ["Elle peut vivre longtemps", "Elle rentre sa tÃªte"]
+        hard: ["Elle peut vivre longtemps", "Elle rentre sa tête"]
       },
-      facts: ["La tortue peut vivre trÃ¨s longtemps.", "Sa carapace la protÃ¨ge."]
+      facts: ["La tortue peut vivre très longtemps.", "Sa carapace la protège."]
     },
     {
       id: "ours2",
@@ -1387,10 +1416,10 @@ const EXTRA_DATA = {
       icon: "ðŸ»",
       clues: {
         easy: ["C'est un animal", "Il est grand"],
-        medium: ["Il vit dans la forÃªt", "Il aime le miel"],
+        medium: ["Il vit dans la forêt", "Il aime le miel"],
         hard: ["Il peut hiberner", "Il a de grosses pattes"]
       },
-      facts: ["L'ours peut dormir longtemps en hiver.", "Il a un odorat trÃ¨s dÃ©veloppÃ©."]
+      facts: ["L'ours peut dormir longtemps en hiver.", "Il a un odorat très développé."]
     }
   ],
   objet: [
@@ -1404,7 +1433,7 @@ const EXTRA_DATA = {
         medium: ["On souffle dedans", "Il fait de la musique"],
         hard: ["Il brille", "C'est un instrument"]
       },
-      facts: ["La trompette est un instrument de musique.", "Elle est souvent en mÃ©tal."]
+      facts: ["La trompette est un instrument de musique.", "Elle est souvent en métal."]
     },
     {
       id: "micro",
@@ -1414,9 +1443,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un objet", "Il est petit"],
         medium: ["On parle dedans", "Il amplifie la voix"],
-        hard: ["Il sert Ã  chanter", "On l'utilise sur scÃ¨ne"]
+        hard: ["Il sert à chanter", "On l'utilise sur scène"]
       },
-      facts: ["Le micro sert Ã  enregistrer la voix.", "Il aide Ã  se faire entendre."]
+      facts: ["Le micro sert à enregistrer la voix.", "Il aide à se faire entendre."]
     },
     {
       id: "horloge",
@@ -1425,10 +1454,10 @@ const EXTRA_DATA = {
       icon: "ðŸ•°ï¸",
       clues: {
         easy: ["C'est un objet", "Elle donne l'heure"],
-        medium: ["Elle a des aiguilles", "Elle peut Ãªtre accrochÃ©e"],
+        medium: ["Elle a des aiguilles", "Elle peut être accrochée"],
         hard: ["Elle fait tic-tac", "On la voit au mur"]
       },
-      facts: ["Une horloge sert Ã  lire l'heure.", "Elle peut Ãªtre grande ou petite."]
+      facts: ["Une horloge sert à lire l'heure.", "Elle peut être grande ou petite."]
     },
     {
       id: "gomme",
@@ -1436,9 +1465,9 @@ const EXTRA_DATA = {
       aliases: ["gomme", "une gomme", "la gomme"],
       icon: "ðŸ§¼",
       clues: {
-        easy: ["C'est un objet", "On l'utilise Ã  l'Ã©cole"],
+        easy: ["C'est un objet", "On l'utilise à l'école"],
         medium: ["Elle efface", "Elle est petite"],
-        hard: ["On efface le crayon", "Elle peut Ãªtre blanche"]
+        hard: ["On efface le crayon", "Elle peut être blanche"]
       },
       facts: ["La gomme efface les erreurs.", "On l'utilise avec un crayon."]
     },
@@ -1449,7 +1478,7 @@ const EXTRA_DATA = {
       icon: "ðŸ§´",
       clues: {
         easy: ["C'est un objet", "On met un liquide dedans"],
-        medium: ["Elle peut Ãªtre en plastique", "On la tient Ã  la main"],
+        medium: ["Elle peut être en plastique", "On la tient à la main"],
         hard: ["Elle a un bouchon", "On la ferme"]
       },
       facts: ["Une bouteille peut contenir de l'eau.", "Elle se ferme avec un bouchon."]
@@ -1460,11 +1489,11 @@ const EXTRA_DATA = {
       aliases: ["chapeau", "un chapeau", "le chapeau"],
       icon: "ðŸŽ©",
       clues: {
-        easy: ["C'est un objet", "On le met sur la tÃªte"],
-        medium: ["Il protÃ¨ge du soleil", "Il peut Ãªtre Ã©lÃ©gant"],
-        hard: ["Il a une forme ronde", "On le porte pour se dÃ©guiser"]
+        easy: ["C'est un objet", "On le met sur la tête"],
+        medium: ["Il protège du soleil", "Il peut être élégant"],
+        hard: ["Il a une forme ronde", "On le porte pour se déguiser"]
       },
-      facts: ["Le chapeau se porte sur la tÃªte.", "Il existe plein de styles de chapeaux."]
+      facts: ["Le chapeau se porte sur la tête.", "Il existe plein de styles de chapeaux."]
     },
     {
       id: "cadenas",
@@ -1472,23 +1501,23 @@ const EXTRA_DATA = {
       aliases: ["cadenas", "un cadenas", "le cadenas"],
       icon: "ðŸ”’",
       clues: {
-        easy: ["C'est un objet", "Il sert Ã  fermer"],
-        medium: ["Il s'ouvre avec une clÃ©", "Il est en mÃ©tal"],
-        hard: ["On le met sur un portail", "Il protÃ¨ge les affaires"]
+        easy: ["C'est un objet", "Il sert à fermer"],
+        medium: ["Il s'ouvre avec une clé", "Il est en métal"],
+        hard: ["On le met sur un portail", "Il protège les affaires"]
       },
-      facts: ["Le cadenas sert Ã  verrouiller.", "Il existe des cadenas Ã  code."]
+      facts: ["Le cadenas sert à verrouiller.", "Il existe des cadenas à code."]
     },
     {
       id: "regle",
-      label: "RÃ¨gle",
-      aliases: ["regle", "rÃ¨gle", "une rÃ¨gle"],
+      label: "Règle",
+      aliases: ["regle", "règle", "une règle"],
       icon: "ðŸ“",
       clues: {
-        easy: ["C'est un objet", "On l'utilise Ã  l'Ã©cole"],
-        medium: ["Elle est longue", "Elle sert Ã  tracer"],
+        easy: ["C'est un objet", "On l'utilise à l'école"],
+        medium: ["Elle est longue", "Elle sert à tracer"],
         hard: ["Elle mesure", "Elle est droite"]
       },
-      facts: ["La rÃ¨gle sert Ã  mesurer.", "Elle aide Ã  tracer des lignes."]
+      facts: ["La règle sert à mesurer.", "Elle aide à tracer des lignes."]
     },
     {
       id: "gourde",
@@ -1509,10 +1538,10 @@ const EXTRA_DATA = {
       icon: "ðŸ§­",
       clues: {
         easy: ["C'est un objet", "Elle montre une direction"],
-        medium: ["Elle a une aiguille", "Elle aide Ã  se repÃ©rer"],
+        medium: ["Elle a une aiguille", "Elle aide à se repérer"],
         hard: ["Elle indique le nord", "On l'utilise en aventure"]
       },
-      facts: ["La boussole montre le nord.", "Elle aide Ã  s'orienter."]
+      facts: ["La boussole montre le nord.", "Elle aide à s'orienter."]
     },
     {
       id: "panier",
@@ -1522,21 +1551,21 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un objet", "On met des choses dedans"],
         medium: ["Il a une anse", "On le porte"],
-        hard: ["On l'utilise au marchÃ©", "Il est en osier"]
+        hard: ["On l'utilise au marché", "Il est en osier"]
       },
-      facts: ["Le panier sert Ã  transporter.", "Il peut Ãªtre lÃ©ger."]
+      facts: ["Le panier sert à transporter.", "Il peut être léger."]
     },
     {
       id: "telecommande",
-      label: "TÃ©lÃ©commande",
-      aliases: ["telecommande", "tÃ©lÃ©commande", "une tÃ©lÃ©commande"],
+      label: "Télécommande",
+      aliases: ["telecommande", "télécommande", "une télécommande"],
       icon: "ðŸ“º",
       clues: {
         easy: ["C'est un objet", "On appuie dessus"],
-        medium: ["Elle a des boutons", "Elle contrÃ´le un Ã©cran"],
-        hard: ["Elle change de chaÃ®ne", "Elle sert Ã  la tÃ©lÃ©"]
+        medium: ["Elle a des boutons", "Elle contrôle un écran"],
+        hard: ["Elle change de chaîne", "Elle sert à la télé"]
       },
-      facts: ["La tÃ©lÃ©commande contrÃ´le la tÃ©lÃ©vision.", "Elle fonctionne avec des piles."]
+      facts: ["La télécommande contrôle la télévision.", "Elle fonctionne avec des piles."]
     },
     {
       id: "lunettes",
@@ -1545,10 +1574,10 @@ const EXTRA_DATA = {
       icon: "ðŸ‘“",
       clues: {
         easy: ["C'est un objet", "On le met sur le nez"],
-        medium: ["Il aide Ã  mieux voir", "Il a deux verres"],
-        hard: ["Il peut protÃ©ger du soleil", "Il a des branches"]
+        medium: ["Il aide à mieux voir", "Il a deux verres"],
+        hard: ["Il peut protéger du soleil", "Il a des branches"]
       },
-      facts: ["Les lunettes aident Ã  bien voir.", "Il existe des lunettes de soleil."]
+      facts: ["Les lunettes aident à bien voir.", "Il existe des lunettes de soleil."]
     },
     {
       id: "guitare",
@@ -1560,7 +1589,7 @@ const EXTRA_DATA = {
         medium: ["Elle a des cordes", "On la gratte"],
         hard: ["Elle a une caisse", "On la joue avec les doigts"]
       },
-      facts: ["La guitare a plusieurs cordes.", "Elle est trÃ¨s utilisÃ©e en musique."]
+      facts: ["La guitare a plusieurs cordes.", "Elle est très utilisée en musique."]
     },
     {
       id: "marteau",
@@ -1568,11 +1597,11 @@ const EXTRA_DATA = {
       aliases: ["marteau", "un marteau"],
       icon: "ðŸ”¨",
       clues: {
-        easy: ["C'est un objet", "On le tient Ã  la main"],
-        medium: ["Il sert Ã  taper", "Il est en mÃ©tal"],
+        easy: ["C'est un objet", "On le tient à la main"],
+        medium: ["Il sert à taper", "Il est en métal"],
         hard: ["Il enfonce des clous", "Il a un manche"]
       },
-      facts: ["Le marteau sert Ã  bricoler.", "Il aide Ã  planter des clous."]
+      facts: ["Le marteau sert à bricoler.", "Il aide à planter des clous."]
     },
     {
       id: "puzzle",
@@ -1581,10 +1610,10 @@ const EXTRA_DATA = {
       icon: "ðŸ§©",
       clues: {
         easy: ["C'est un objet", "On joue avec"],
-        medium: ["Il a des piÃ¨ces", "On les assemble"],
+        medium: ["Il a des pièces", "On les assemble"],
         hard: ["Il forme une image", "Il demande de la patience"]
       },
-      facts: ["Un puzzle a beaucoup de piÃ¨ces.", "On les assemble pour faire une image."]
+      facts: ["Un puzzle a beaucoup de pièces.", "On les assemble pour faire une image."]
     },
     {
       id: "appareil_photo",
@@ -1596,7 +1625,7 @@ const EXTRA_DATA = {
         medium: ["Il a un bouton", "Il peut faire un flash"],
         hard: ["Il prend des photos", "Il a un objectif"]
       },
-      facts: ["Un appareil photo sert Ã  prendre des images.", "Il peut Ãªtre numÃ©rique."]
+      facts: ["Un appareil photo sert à prendre des images.", "Il peut être numérique."]
     },
     {
       id: "valise",
@@ -1605,22 +1634,22 @@ const EXTRA_DATA = {
       icon: "ðŸ§³",
       clues: {
         easy: ["C'est un objet", "On y met des affaires"],
-        medium: ["On l'emporte en voyage", "Elle a une poignÃ©e"],
+        medium: ["On l'emporte en voyage", "Elle a une poignée"],
         hard: ["Elle peut avoir des roulettes", "On la ferme avec une fermeture"]
       },
-      facts: ["La valise sert Ã  voyager.", "Elle contient des vÃªtements."]
+      facts: ["La valise sert à voyager.", "Elle contient des vêtements."]
     },
     {
       id: "cle_usb",
-      label: "ClÃ© USB",
-      aliases: ["cle usb", "clÃ© usb", "une clÃ© usb"],
+      label: "Clé USB",
+      aliases: ["cle usb", "clé usb", "une clé usb"],
       icon: "ðŸ’¾",
       clues: {
         easy: ["C'est un objet", "Il est petit"],
         medium: ["On le branche", "Il garde des fichiers"],
-        hard: ["Il va dans un ordinateur", "Il sert Ã  transporter des donnÃ©es"]
+        hard: ["Il va dans un ordinateur", "Il sert à transporter des données"]
       },
-      facts: ["Une clÃ© USB stocke des fichiers.", "Elle se branche sur un ordinateur."]
+      facts: ["Une clé USB stocke des fichiers.", "Elle se branche sur un ordinateur."]
     },
     {
       id: "balle_tennis",
@@ -1636,15 +1665,15 @@ const EXTRA_DATA = {
     },
     {
       id: "pistolet_eau",
-      label: "Pistolet à eau",
-      aliases: ["pistolet a eau", "pistolet à eau", "un pistolet à eau"],
+      label: "Pistolet é eau",
+      aliases: ["pistolet a eau", "pistolet é eau", "un pistolet é eau"],
       icon: "🔫",
       clues: {
         easy: ["C'est un objet", "On joue avec"],
         medium: ["Il envoie de l'eau", "Il est en plastique"],
-        hard: ["On l'utilise l'été", "Il sert à arroser en jouant"]
+        hard: ["On l'utilise l'été", "Il sert é arroser en jouant"]
       },
-      facts: ["Le pistolet à eau sert à jouer dehors.", "Il est utilisé en été."]
+      facts: ["Le pistolet é eau sert é jouer dehors.", "Il est utilisé en été."]
     },
     {
       id: "bonnet",
@@ -1652,11 +1681,11 @@ const EXTRA_DATA = {
       aliases: ["bonnet", "un bonnet"],
       icon: "🧢",
       clues: {
-        easy: ["C'est un objet", "On le met sur la tête"],
+        easy: ["C'est un objet", "On le met sur la téte"],
         medium: ["Il tient chaud", "On le porte en hiver"],
-        hard: ["Il est en laine", "Il protège du froid"]
+        hard: ["Il est en laine", "Il protége du froid"]
       },
-      facts: ["Le bonnet protège du froid.", "Il est souvent en laine."]
+      facts: ["Le bonnet protége du froid.", "Il est souvent en laine."]
     },
     {
       id: "perceuse",
@@ -1668,7 +1697,7 @@ const EXTRA_DATA = {
         medium: ["Elle tourne", "Elle fait du bruit"],
         hard: ["Elle fait des trous", "On l'utilise sur le bois"]
       },
-      facts: ["La perceuse sert à faire des trous.", "Elle est utile pour le bricolage."]
+      facts: ["La perceuse sert é faire des trous.", "Elle est utile pour le bricolage."]
     },
     {
       id: "cahier",
@@ -1677,22 +1706,22 @@ const EXTRA_DATA = {
       icon: "📓",
       clues: {
         easy: ["C'est un objet", "On écrit dedans"],
-        medium: ["Il a des pages", "On l'utilise à l'école"],
+        medium: ["Il a des pages", "On l'utilise é l'école"],
         hard: ["Il a une couverture", "On y note des devoirs"]
       },
-      facts: ["Le cahier sert à écrire.", "On l'utilise souvent à l'école."]
+      facts: ["Le cahier sert é écrire.", "On l'utilise souvent é l'école."]
     },
     {
       id: "brosse_a_cheveux",
-      label: "Brosse à cheveux",
-      aliases: ["brosse à cheveux", "brosse a cheveux", "une brosse à cheveux"],
+      label: "Brosse é cheveux",
+      aliases: ["brosse é cheveux", "brosse a cheveux", "une brosse é cheveux"],
       icon: "🪮",
       clues: {
         easy: ["C'est un objet", "On l'utilise tous les jours"],
-        medium: ["Elle est dans la salle de bain", "Elle démêle"],
+        medium: ["Elle est dans la salle de bain", "Elle déméle"],
         hard: ["Elle a des picots", "Elle sert pour les cheveux"]
       },
-      facts: ["La brosse à cheveux aide à démêler.", "Elle est utile après la douche."]
+      facts: ["La brosse é cheveux aide é démêler.", "Elle est utile aprés la douche."]
     },
   ],
   aliment: [
@@ -1704,9 +1733,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un fruit", "Elle est petite"],
         medium: ["Elle est rouge", "Elle est douce"],
-        hard: ["On la met dans les desserts", "Elle pousse en Ã©tÃ©"]
+        hard: ["On la met dans les desserts", "Elle pousse en été"]
       },
-      facts: ["La framboise pousse sur un framboisier.", "Elle est trÃ¨s parfumÃ©e."]
+      facts: ["La framboise pousse sur un framboisier.", "Elle est très parfumée."]
     },
     {
       id: "melon",
@@ -1715,22 +1744,22 @@ const EXTRA_DATA = {
       icon: "ðŸˆ",
       clues: {
         easy: ["C'est un fruit", "Il est gros"],
-        medium: ["Il est rond", "Il est sucrÃ©"],
-        hard: ["On le mange en Ã©tÃ©", "Il a des pÃ©pins"]
+        medium: ["Il est rond", "Il est sucré"],
+        hard: ["On le mange en été", "Il a des pépins"]
       },
-      facts: ["Le melon est rafraÃ®chissant.", "On le mange souvent frais."]
+      facts: ["Le melon est rafraîchissant.", "On le mange souvent frais."]
     },
     {
       id: "epinard",
-      label: "Ã‰pinard",
-      aliases: ["epinard", "Ã©pinard", "les Ã©pinards"],
+      label: "Épinard",
+      aliases: ["epinard", "épinard", "les épinards"],
       icon: "ðŸ¥¬",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
+        easy: ["C'est un légume", "Il est vert"],
         medium: ["Il a des feuilles", "On le mange cuit"],
-        hard: ["Il est bon pour la santÃ©", "On en fait des purÃ©es"]
+        hard: ["Il est bon pour la santé", "On en fait des purées"]
       },
-      facts: ["L'Ã©pinard est riche en vitamines.", "Il se cuisine facilement."]
+      facts: ["L'épinard est riche en vitamines.", "Il se cuisine facilement."]
     },
     {
       id: "champignon",
@@ -1739,10 +1768,10 @@ const EXTRA_DATA = {
       icon: "ðŸ„",
       clues: {
         easy: ["C'est un aliment", "Il est petit"],
-        medium: ["Il pousse dans la forÃªt", "Il a un chapeau"],
+        medium: ["Il pousse dans la forêt", "Il a un chapeau"],
         hard: ["On le met dans les plats", "Il ne faut pas en manger n'importe lequel"]
       },
-      facts: ["Certains champignons sont comestibles.", "Ils poussent souvent aprÃ¨s la pluie."]
+      facts: ["Certains champignons sont comestibles.", "Ils poussent souvent après la pluie."]
     },
     {
       id: "poireau",
@@ -1750,11 +1779,11 @@ const EXTRA_DATA = {
       aliases: ["poireau", "un poireau", "le poireau"],
       icon: "ðŸ¥¬",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est vert"],
+        easy: ["C'est un légume", "Il est vert"],
         medium: ["Il est long", "On le coupe en rondelles"],
-        hard: ["On le met dans les soupes", "Il a un goÃ»t doux"]
+        hard: ["On le met dans les soupes", "Il a un goût doux"]
       },
-      facts: ["Le poireau est un lÃ©gume d'hiver.", "On le met souvent dans les soupes."]
+      facts: ["Le poireau est un légume d'hiver.", "On le met souvent dans les soupes."]
     },
     {
       id: "radis",
@@ -1762,7 +1791,7 @@ const EXTRA_DATA = {
       aliases: ["radis", "un radis", "le radis"],
       icon: "ðŸŒ¶ï¸",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est petit"],
+        easy: ["C'est un légume", "Il est petit"],
         medium: ["Il est rouge", "Il est croquant"],
         hard: ["On le mange cru", "Il pousse dans la terre"]
       },
@@ -1778,19 +1807,19 @@ const EXTRA_DATA = {
         medium: ["Il est vert", "Il a une forme de goutte"],
         hard: ["Il pousse sur un poirier", "On le mange en dessert"]
       },
-      facts: ["La poire est souvent trÃ¨s juteuse.", "On la mange fraÃ®che."]
+      facts: ["La poire est souvent très juteuse.", "On la mange fraîche."]
     },
     {
       id: "clementine",
-      label: "ClÃ©mentine",
-      aliases: ["clementine", "clÃ©mentine", "une clÃ©mentine"],
+      label: "Clémentine",
+      aliases: ["clementine", "clémentine", "une clémentine"],
       icon: "ðŸŠ",
       clues: {
         easy: ["C'est un fruit", "Il est orange"],
-        medium: ["Il est petit", "On l'Ã©pluche"],
-        hard: ["Il se sÃ©pare en quartiers", "On le mange en hiver"]
+        medium: ["Il est petit", "On l'épluche"],
+        hard: ["Il se sépare en quartiers", "On le mange en hiver"]
       },
-      facts: ["La clÃ©mentine est douce et facile Ã  Ã©plucher.", "Elle est riche en vitamine C."]
+      facts: ["La clémentine est douce et facile à éplucher.", "Elle est riche en vitamine C."]
     },
     {
       id: "courge",
@@ -1798,7 +1827,7 @@ const EXTRA_DATA = {
       aliases: ["courge", "une courge", "la courge"],
       icon: "ðŸŽƒ",
       clues: {
-        easy: ["C'est un lÃ©gume", "Elle est grosse"],
+        easy: ["C'est un légume", "Elle est grosse"],
         medium: ["Elle est orange", "On la cuisine"],
         hard: ["On en fait des soupes", "Elle a une peau dure"]
       },
@@ -1811,10 +1840,10 @@ const EXTRA_DATA = {
       icon: "ðŸ«",
       clues: {
         easy: ["C'est un fruit", "Elle est petite"],
-        medium: ["Elle est violette", "Elle est sucrÃ©e"],
-        hard: ["On la met dans les gÃ¢teaux", "Elle pousse en Ã©tÃ©"]
+        medium: ["Elle est violette", "Elle est sucrée"],
+        hard: ["On la met dans les gâteaux", "Elle pousse en été"]
       },
-      facts: ["La myrtille est une petite baie.", "Elle est souvent utilisÃ©e en dessert."]
+      facts: ["La myrtille est une petite baie.", "Elle est souvent utilisée en dessert."]
     },
     {
       id: "aneth",
@@ -1834,7 +1863,7 @@ const EXTRA_DATA = {
       aliases: ["poivron jaune", "un poivron jaune"],
       icon: "ðŸ«‘",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est colorÃ©"],
+        easy: ["C'est un légume", "Il est coloré"],
         medium: ["Il est jaune", "Il est croquant"],
         hard: ["Il a des graines", "On le coupe pour cuisiner"]
       },
@@ -1850,19 +1879,19 @@ const EXTRA_DATA = {
         medium: ["Il est croquant", "Il est juteux"],
         hard: ["Il vient d'Asie", "On le mange frais"]
       },
-      facts: ["La poire asiatique est trÃ¨s croquante.", "Elle est souvent appelÃ©e nashi."]
+      facts: ["La poire asiatique est très croquante.", "Elle est souvent appelée nashi."]
     },
     {
       id: "patisson",
-      label: "PÃ¢tisson",
-      aliases: ["patisson", "pÃ¢tisson", "un pÃ¢tisson"],
+      label: "Pâtisson",
+      aliases: ["patisson", "pâtisson", "un pâtisson"],
       icon: "ðŸŽƒ",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est rond"],
+        easy: ["C'est un légume", "Il est rond"],
         medium: ["Il est blanc ou vert", "On le cuisine"],
-        hard: ["Il ressemble Ã  une courge", "On le met au four"]
+        hard: ["Il ressemble à une courge", "On le met au four"]
       },
-      facts: ["Le pÃ¢tisson est une courge.", "Il se cuisine facilement."]
+      facts: ["Le pâtisson est une courge.", "Il se cuisine facilement."]
     },
     {
       id: "kiwi",
@@ -1872,9 +1901,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un fruit", "Il est petit"],
         medium: ["Il est vert dedans", "Il a des graines"],
-        hard: ["Il a une peau brune", "On l'Ã©pluche"]
+        hard: ["Il a une peau brune", "On l'épluche"]
       },
-      facts: ["Le kiwi est riche en vitamine C.", "Il a un goÃ»t acidulÃ©."]
+      facts: ["Le kiwi est riche en vitamine C.", "Il a un goût acidulé."]
     },
     {
       id: "mangue",
@@ -1882,11 +1911,11 @@ const EXTRA_DATA = {
       aliases: ["mangue", "une mangue", "la mangue"],
       icon: "ðŸ¥­",
       clues: {
-        easy: ["C'est un fruit", "Il est sucrÃ©"],
+        easy: ["C'est un fruit", "Il est sucré"],
         medium: ["Il est jaune dedans", "Il vient des pays chauds"],
-        hard: ["Il a un gros noyau", "On le mange bien mÃ»r"]
+        hard: ["Il a un gros noyau", "On le mange bien mûr"]
       },
-      facts: ["La mangue est un fruit tropical.", "Elle est trÃ¨s parfumÃ©e."]
+      facts: ["La mangue est un fruit tropical.", "Elle est très parfumée."]
     },
     {
       id: "courgette",
@@ -1894,9 +1923,9 @@ const EXTRA_DATA = {
       aliases: ["courgette", "une courgette"],
       icon: "ðŸ¥’",
       clues: {
-        easy: ["C'est un lÃ©gume", "Elle est verte"],
+        easy: ["C'est un légume", "Elle est verte"],
         medium: ["Elle est longue", "On la cuisine"],
-        hard: ["On la met dans des plats", "Elle peut Ãªtre coupÃ©e en rondelles"]
+        hard: ["On la met dans des plats", "Elle peut être coupée en rondelles"]
       },
       facts: ["La courgette se cuisine facilement.", "Elle est souvent verte."]
     },
@@ -1906,11 +1935,11 @@ const EXTRA_DATA = {
       aliases: ["poivron rouge", "un poivron rouge"],
       icon: "ðŸ«‘",
       clues: {
-        easy: ["C'est un lÃ©gume", "Il est colorÃ©"],
+        easy: ["C'est un légume", "Il est coloré"],
         medium: ["Il est rouge", "Il est croquant"],
         hard: ["Il a des graines", "On le coupe pour cuisiner"]
       },
-      facts: ["Le poivron rouge est sucrÃ©.", "Il se mange cru ou cuit."]
+      facts: ["Le poivron rouge est sucré.", "Il se mange cru ou cuit."]
     },
     {
       id: "pomme_de_terre",
@@ -1919,10 +1948,10 @@ const EXTRA_DATA = {
       icon: "ðŸ¥”",
       clues: {
         easy: ["C'est un aliment", "Il pousse dans la terre"],
-        medium: ["On le cuisine", "Il n'est pas sucrÃ©"],
+        medium: ["On le cuisine", "Il n'est pas sucré"],
         hard: ["On en fait des frites", "Il a une peau"]
       },
-      facts: ["La pomme de terre est trÃ¨s utilisÃ©e en cuisine.", "Elle pousse sous terre."]
+      facts: ["La pomme de terre est très utilisée en cuisine.", "Elle pousse sous terre."]
     },
     {
       id: "fromage",
@@ -1932,9 +1961,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un aliment", "On le mange"],
         medium: ["Il vient du lait", "Il a une odeur"],
-        hard: ["Il existe plein de variÃ©tÃ©s", "On le mange souvent avec du pain"]
+        hard: ["Il existe plein de variétés", "On le mange souvent avec du pain"]
       },
-      facts: ["Le fromage est fabriquÃ© Ã  partir de lait.", "Il existe beaucoup de types de fromage."]
+      facts: ["Le fromage est fabriqué à partir de lait.", "Il existe beaucoup de types de fromage."]
     },
     {
       id: "pain",
@@ -1944,9 +1973,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un aliment", "On en mange souvent"],
         medium: ["Il est fait avec de la farine", "Il est cuit au four"],
-        hard: ["Il peut Ãªtre en baguette", "Il a une croÃ»te"]
+        hard: ["Il peut être en baguette", "Il a une croûte"]
       },
-      facts: ["Le pain est trÃ¨s courant.", "On le fait avec de la farine et de l'eau."]
+      facts: ["Le pain est très courant.", "On le fait avec de la farine et de l'eau."]
     },
     {
       id: "glace",
@@ -1955,8 +1984,8 @@ const EXTRA_DATA = {
       icon: "ðŸ¦",
       clues: {
         easy: ["C'est un aliment", "C'est froid"],
-        medium: ["Elle est sucrÃ©e", "On la mange en Ã©tÃ©"],
-        hard: ["Elle fond vite", "Elle peut Ãªtre dans un cornet"]
+        medium: ["Elle est sucrée", "On la mange en été"],
+        hard: ["Elle fond vite", "Elle peut être dans un cornet"]
       },
       facts: ["La glace est une gourmandise.", "Elle se mange froide."]
     },
@@ -1970,7 +1999,7 @@ const EXTRA_DATA = {
         medium: ["Il est long", "On l'épluche"],
         hard: ["Il pousse en grappes", "Les singes l'aiment bien"]
       },
-      facts: ["La banane est un fruit très courant.", "Elle est riche en énergie."]
+      facts: ["La banane est un fruit trés courant.", "Elle est riche en énergie."]
     },
     {
       id: "fraise",
@@ -1982,7 +2011,7 @@ const EXTRA_DATA = {
         medium: ["Elle a des petits grains", "Elle est sucrée"],
         hard: ["On la met dans les desserts", "Elle pousse au printemps"]
       },
-      facts: ["La fraise est un fruit très apprécié.", "Elle est souvent utilisée en dessert."]
+      facts: ["La fraise est un fruit trés apprécié.", "Elle est souvent utilisée en dessert."]
     },
     {
       id: "raisin",
@@ -1991,7 +2020,7 @@ const EXTRA_DATA = {
       icon: "🍇",
       clues: {
         easy: ["C'est un fruit", "Il est petit"],
-        medium: ["Il pousse en grappes", "Il peut être vert ou violet"],
+        medium: ["Il pousse en grappes", "Il peut étre vert ou violet"],
         hard: ["On en fait du jus", "On le mange en grappe"]
       },
       facts: ["Le raisin pousse en grappes.", "Il existe plusieurs couleurs de raisin."]
@@ -2004,7 +2033,7 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un légume", "Elle est orange"],
         medium: ["Elle pousse dans la terre", "On la croque"],
-        hard: ["Elle aide à bien voir", "On la met dans les soupes"]
+        hard: ["Elle aide é bien voir", "On la met dans les soupes"]
       },
       facts: ["La carotte est un légume croquant.", "Elle est riche en vitamines."]
     },
@@ -2018,7 +2047,7 @@ const EXTRA_DATA = {
         medium: ["Elle est ronde", "Elle est juteuse"],
         hard: ["On la met dans les salades", "Elle a des graines"]
       },
-      facts: ["La tomate est très utilisée en cuisine.", "Elle est juteuse et rouge."]
+      facts: ["La tomate est trés utilisée en cuisine.", "Elle est juteuse et rouge."]
     },
     {
       id: "concombre",
@@ -2030,7 +2059,7 @@ const EXTRA_DATA = {
         medium: ["Il est long", "Il est frais"],
         hard: ["On le met dans les salades", "Il a une peau verte"]
       },
-      facts: ["Le concombre est très frais.", "Il se mange souvent cru."]
+      facts: ["Le concombre est trés frais.", "Il se mange souvent cru."]
     },
     {
       id: "yaourt",
@@ -2040,9 +2069,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un aliment", "On le mange froid"],
         medium: ["Il vient du lait", "Il est crémeux"],
-        hard: ["On le met dans un pot", "Il peut être sucré"]
+        hard: ["On le met dans un pot", "Il peut étre sucré"]
       },
-      facts: ["Le yaourt est fait avec du lait.", "Il peut être nature ou sucré."]
+      facts: ["Le yaourt est fait avec du lait.", "Il peut étre nature ou sucré."]
     },
   ],
   personne: [
@@ -2054,7 +2083,7 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est un personnage", "Il fait des tours"],
         medium: ["Il a une baguette", "Il porte une cape"],
-        hard: ["Il connaÃ®t des sorts", "Il surprend les gens"]
+        hard: ["Il connaît des sorts", "Il surprend les gens"]
       },
       facts: ["Les magiciens aiment la magie.", "Ils font des spectacles."]
     },
@@ -2065,22 +2094,22 @@ const EXTRA_DATA = {
       icon: "ðŸ‘¨â€ðŸš€",
       clues: {
         easy: ["C'est une personne", "Elle voyage dans l'espace"],
-        medium: ["Elle porte une combinaison", "Elle va dans une fusÃ©e"],
-        hard: ["Elle flotte sans gravitÃ©", "Elle visite des Ã©toiles"]
+        medium: ["Elle porte une combinaison", "Elle va dans une fusée"],
+        hard: ["Elle flotte sans gravité", "Elle visite des étoiles"]
       },
-      facts: ["Les astronautes s'entraÃ®nent longtemps.", "Ils vont dans l'espace."]
+      facts: ["Les astronautes s'entraînent longtemps.", "Ils vont dans l'espace."]
     },
     {
       id: "princesse_sirene",
-      label: "Princesse sirÃ¨ne",
-      aliases: ["sirene", "sirÃ¨ne", "princesse sirÃ¨ne"],
+      label: "Princesse sirène",
+      aliases: ["sirene", "sirène", "princesse sirène"],
       icon: "ðŸ§œâ€â™€ï¸",
       clues: {
         easy: ["C'est un personnage", "Elle vit dans l'eau"],
-        medium: ["Elle a une queue", "Elle nage trÃ¨s bien"],
+        medium: ["Elle a une queue", "Elle nage très bien"],
         hard: ["Elle vit sous la mer", "Elle aime la musique"]
       },
-      facts: ["Les sirÃ¨nes vivent dans les histoires.", "Elles nagent trÃ¨s vite."]
+      facts: ["Les sirènes vivent dans les histoires.", "Elles nagent très vite."]
     },
     {
       id: "chevalier",
@@ -2089,10 +2118,10 @@ const EXTRA_DATA = {
       icon: "ðŸ›¡ï¸",
       clues: {
         easy: ["C'est un personnage", "Il aide les autres"],
-        medium: ["Il porte une armure", "Il protÃ¨ge un chÃ¢teau"],
+        medium: ["Il porte une armure", "Il protège un château"],
         hard: ["Il a un bouclier", "Il est courageux"]
       },
-      facts: ["Les chevaliers protÃ¨gent les gens.", "Ils vivent dans les chÃ¢teaux."]
+      facts: ["Les chevaliers protègent les gens.", "Ils vivent dans les châteaux."]
     },
     {
       id: "exploratrice",
@@ -2101,10 +2130,10 @@ const EXTRA_DATA = {
       icon: "ðŸ§­",
       clues: {
         easy: ["C'est une personne", "Elle aime voyager"],
-        medium: ["Elle dÃ©couvre des lieux", "Elle porte un sac"],
+        medium: ["Elle découvre des lieux", "Elle porte un sac"],
         hard: ["Elle utilise une carte", "Elle vit des aventures"]
       },
-      facts: ["Les explorateurs dÃ©couvrent le monde.", "Ils aiment l'aventure."]
+      facts: ["Les explorateurs découvrent le monde.", "Ils aiment l'aventure."]
     },
     {
       id: "pirate_gentil",
@@ -2113,10 +2142,10 @@ const EXTRA_DATA = {
       icon: "ðŸ´â€â˜ ï¸",
       clues: {
         easy: ["C'est un personnage", "Il voyage en bateau"],
-        medium: ["Il cherche un trÃ©sor", "Il est joyeux"],
+        medium: ["Il cherche un trésor", "Il est joyeux"],
         hard: ["Il a un chapeau", "Il adore l'aventure"]
       },
-      facts: ["Les pirates vivent sur la mer.", "Ils aiment les cartes au trÃ©sor."]
+      facts: ["Les pirates vivent sur la mer.", "Ils aiment les cartes au trésor."]
     },
     {
       id: "chef",
@@ -2125,10 +2154,10 @@ const EXTRA_DATA = {
       icon: "ðŸ‘¨â€ðŸ³",
       clues: {
         easy: ["C'est une personne", "Il cuisine"],
-        medium: ["Il prÃ©pare des plats", "Il porte souvent un chapeau"],
+        medium: ["Il prépare des plats", "Il porte souvent un chapeau"],
         hard: ["Il travaille dans une cuisine", "Il aime les recettes"]
       },
-      facts: ["Le cuisinier prÃ©pare des repas.", "Il connaÃ®t beaucoup de recettes."]
+      facts: ["Le cuisinier prépare des repas.", "Il connaît beaucoup de recettes."]
     },
     {
       id: "musicien",
@@ -2138,7 +2167,7 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est une personne", "Il fait de la musique"],
         medium: ["Il joue d'un instrument", "Il aime les notes"],
-        hard: ["Il rÃ©pÃ¨te des morceaux", "Il peut faire un concert"]
+        hard: ["Il répète des morceaux", "Il peut faire un concert"]
       },
       facts: ["Le musicien joue de la musique.", "Il peut jouer en groupe."]
     },
@@ -2150,9 +2179,9 @@ const EXTRA_DATA = {
       clues: {
         easy: ["C'est une personne", "Elle danse"],
         medium: ["Elle bouge au rythme", "Elle aime la musique"],
-        hard: ["Elle apprend des chorÃ©graphies", "Elle peut monter sur scÃ¨ne"]
+        hard: ["Elle apprend des chorégraphies", "Elle peut monter sur scène"]
       },
-      facts: ["La danseuse bouge avec la musique.", "Elle s'entraÃ®ne souvent."]
+      facts: ["La danseuse bouge avec la musique.", "Elle s'entraîne souvent."]
     },
     {
       id: "jardinier",
@@ -2169,14 +2198,14 @@ const EXTRA_DATA = {
     {
       id: "docteur",
       label: "Docteur",
-      aliases: ["docteur", "un docteur", "mÃ©decin"],
+      aliases: ["docteur", "un docteur", "médecin"],
       icon: "ðŸ§‘â€âš•ï¸",
       clues: {
         easy: ["C'est une personne", "Il aide les autres"],
-        medium: ["Il soigne", "Il travaille Ã  l'hÃ´pital"],
+        medium: ["Il soigne", "Il travaille à l'hôpital"],
         hard: ["Il porte une blouse", "Il donne des conseils"]
       },
-      facts: ["Le docteur soigne les personnes.", "Il aide Ã  rester en bonne santÃ©."]
+      facts: ["Le docteur soigne les personnes.", "Il aide à rester en bonne santé."]
     },
     {
       id: "pompiere",
@@ -2185,10 +2214,10 @@ const EXTRA_DATA = {
       icon: "ðŸš’",
       clues: {
         easy: ["C'est une personne", "Il aide les autres"],
-        medium: ["Il Ã©teint les feux", "Il porte un casque"],
+        medium: ["Il éteint les feux", "Il porte un casque"],
         hard: ["Il conduit un camion rouge", "Il intervient en urgence"]
       },
-      facts: ["Le pompier Ã©teint les incendies.", "Il protÃ¨ge les gens."]
+      facts: ["Le pompier éteint les incendies.", "Il protège les gens."]
     },
     {
       id: "policier",
@@ -2197,10 +2226,10 @@ const EXTRA_DATA = {
       icon: "ðŸ‘®â€â™‚ï¸",
       clues: {
         easy: ["C'est une personne", "Il aide les autres"],
-        medium: ["Il porte un uniforme", "Il protÃ¨ge la ville"],
-        hard: ["Il dirige parfois la circulation", "Il garde la sÃ©curitÃ©"]
+        medium: ["Il porte un uniforme", "Il protège la ville"],
+        hard: ["Il dirige parfois la circulation", "Il garde la sécurité"]
       },
-      facts: ["Le policier protÃ¨ge les citoyens.", "Il porte un uniforme."]
+      facts: ["Le policier protège les citoyens.", "Il porte un uniforme."]
     },
     {
       id: "boulanger",
@@ -2209,10 +2238,10 @@ const EXTRA_DATA = {
       icon: "ðŸ‘¨â€ðŸ³",
       clues: {
         easy: ["C'est une personne", "Il fait du pain"],
-        medium: ["Il travaille tÃ´t", "Il utilise un four"],
+        medium: ["Il travaille tôt", "Il utilise un four"],
         hard: ["Il fait des baguettes", "Il travaille dans une boulangerie"]
       },
-      facts: ["Le boulanger prÃ©pare le pain.", "Il travaille souvent le matin."]
+      facts: ["Le boulanger prépare le pain.", "Il travaille souvent le matin."]
     },
     {
       id: "coiffeur",
@@ -2228,27 +2257,27 @@ const EXTRA_DATA = {
     },
     {
       id: "bibliothecaire",
-      label: "BibliothÃ©caire",
-      aliases: ["bibliothecaire", "bibliothÃ©caire", "un bibliothÃ©caire"],
+      label: "Bibliothécaire",
+      aliases: ["bibliothecaire", "bibliothécaire", "un bibliothécaire"],
       icon: "ðŸ§‘â€ðŸ«",
       clues: {
         easy: ["C'est une personne", "Elle aime les livres"],
-        medium: ["Elle travaille dans une bibliothÃ¨que", "Elle aide Ã  choisir"],
-        hard: ["Elle range les livres", "Elle connaÃ®t beaucoup d'histoires"]
+        medium: ["Elle travaille dans une bibliothèque", "Elle aide à choisir"],
+        hard: ["Elle range les livres", "Elle connaît beaucoup d'histoires"]
       },
-      facts: ["Le bibliothÃ©caire travaille avec des livres.", "Il aide Ã  trouver des histoires."]
+      facts: ["Le bibliothécaire travaille avec des livres.", "Il aide à trouver des histoires."]
     },
     {
       id: "infirmier",
       label: "Infirmier",
-      aliases: ["infirmier", "un infirmier", "infirmiÃ¨re"],
+      aliases: ["infirmier", "un infirmier", "infirmière"],
       icon: "ðŸ§‘â€âš•ï¸",
       clues: {
         easy: ["C'est une personne", "Il aide les malades"],
-        medium: ["Il travaille Ã  l'hÃ´pital", "Il soigne"],
+        medium: ["Il travaille à l'hôpital", "Il soigne"],
         hard: ["Il met des pansements", "Il prend soin des patients"]
       },
-      facts: ["L'infirmier aide Ã  soigner.", "Il travaille souvent Ã  l'hÃ´pital."]
+      facts: ["L'infirmier aide à soigner.", "Il travaille souvent à l'hôpital."]
     },
     {
       id: "pilote",
@@ -2260,7 +2289,7 @@ const EXTRA_DATA = {
         medium: ["Il conduit un avion", "Il porte un uniforme"],
         hard: ["Il travaille dans un cockpit", "Il transporte des passagers"]
       },
-      facts: ["Le pilote conduit l'avion.", "Il emmÃ¨ne les gens en voyage."]
+      facts: ["Le pilote conduit l'avion.", "Il emmène les gens en voyage."]
     },
     {
       id: "journaliste",
@@ -2269,10 +2298,10 @@ const EXTRA_DATA = {
       icon: "ðŸ§‘â€ðŸ’¼",
       clues: {
         easy: ["C'est une personne", "Elle raconte des nouvelles"],
-        medium: ["Elle Ã©crit ou parle", "Elle pose des questions"],
+        medium: ["Elle écrit ou parle", "Elle pose des questions"],
         hard: ["Elle fait des reportages", "Elle informe les gens"]
       },
-      facts: ["Le journaliste informe le public.", "Il peut Ã©crire des articles."]
+      facts: ["Le journaliste informe le public.", "Il peut écrire des articles."]
     },
     {
       id: "facteur",
@@ -2312,15 +2341,15 @@ const EXTRA_DATA = {
     },
     {
       id: "pompier2",
-      label: "Pompière",
-      aliases: ["pompière", "une pompière", "pompier"],
+      label: "Pompiére",
+      aliases: ["pompiére", "une pompiére", "pompier"],
       icon: "🚒",
       clues: {
         easy: ["C'est une personne", "Elle aide les autres"],
         medium: ["Elle éteint les feux", "Elle porte un casque"],
         hard: ["Elle intervient en urgence", "Elle conduit un camion rouge"]
       },
-      facts: ["La pompière éteint les incendies.", "Elle protège les gens."]
+      facts: ["La pompiére éteint les incendies.", "Elle protége les gens."]
     },
     {
       id: "professeur",
@@ -2329,25 +2358,124 @@ const EXTRA_DATA = {
       icon: "🧑‍🏫",
       clues: {
         easy: ["C'est une personne", "Il enseigne"],
-        medium: ["Il travaille à l'école", "Il explique des choses"],
-        hard: ["Il corrige des exercices", "Il aide à apprendre"]
+        medium: ["Il travaille é l'école", "Il explique des choses"],
+        hard: ["Il corrige des exercices", "Il aide é apprendre"]
       },
-      facts: ["Le professeur aide à apprendre.", "Il explique des leçons."]
+      facts: ["Le professeur aide é apprendre.", "Il explique des leéons."]
     },
     {
       id: "cuisiniere",
-      label: "Cuisinière",
-      aliases: ["cuisinière", "une cuisinière"],
+      label: "Cuisiniére",
+      aliases: ["cuisiniére", "une cuisiniére"],
       icon: "👩‍🍳",
       clues: {
         easy: ["C'est une personne", "Elle cuisine"],
         medium: ["Elle prépare des plats", "Elle travaille en cuisine"],
         hard: ["Elle utilise des recettes", "Elle aime les bons plats"]
       },
-      facts: ["La cuisinière prépare des repas.", "Elle connaît des recettes."]
+      facts: ["La cuisiniére prépare des repas.", "Elle connaét des recettes."]
     }
   ]
 };
+
+const mojibakeDecoder = new TextDecoder("utf-8");
+const CP1252_REVERSE = {
+  0x20ac: 0x80,
+  0x201a: 0x82,
+  0x0192: 0x83,
+  0x201e: 0x84,
+  0x2026: 0x85,
+  0x2020: 0x86,
+  0x2021: 0x87,
+  0x02c6: 0x88,
+  0x2030: 0x89,
+  0x0160: 0x8a,
+  0x2039: 0x8b,
+  0x0152: 0x8c,
+  0x017d: 0x8e,
+  0x2018: 0x91,
+  0x2019: 0x92,
+  0x201c: 0x93,
+  0x201d: 0x94,
+  0x2022: 0x95,
+  0x2013: 0x96,
+  0x2014: 0x97,
+  0x02dc: 0x98,
+  0x2122: 0x99,
+  0x0161: 0x9a,
+  0x203a: 0x9b,
+  0x0153: 0x9c,
+  0x017e: 0x9e,
+  0x0178: 0x9f
+};
+
+function toCp1252Bytes(text) {
+  const bytes = [];
+  for (let i = 0; i < text.length; i++) {
+    const code = text.charCodeAt(i);
+    if (code <= 0xff) {
+      bytes.push(code);
+      continue;
+    }
+    const mapped = CP1252_REVERSE[code];
+    if (mapped === undefined) return null;
+    bytes.push(mapped);
+  }
+  return Uint8Array.from(bytes);
+}
+
+function fixMojibake(text) {
+  if (typeof text !== "string") return text;
+  if (!/[ÃÂâð�]/.test(text)) return text;
+  const bytes = toCp1252Bytes(text);
+  if (!bytes) return text;
+  try {
+    const decoded = mojibakeDecoder.decode(bytes);
+    return decoded || text;
+  } catch (error) {
+    return text;
+  }
+}
+
+function fixIcon(icon, id) {
+  let value = fixMojibake(icon);
+  if (!value || /^\?+$/.test(value) || value.includes("�")) {
+    value = ICON_FALLBACK[id] || "❓";
+  }
+  return value;
+}
+
+function normalizeItem(item) {
+  item.label = fixMojibake(item.label);
+  item.icon = fixIcon(item.icon, item.id);
+  if (Array.isArray(item.aliases)) item.aliases = item.aliases.map(fixMojibake);
+  if (item.clues) {
+    if (Array.isArray(item.clues.easy)) item.clues.easy = item.clues.easy.map(fixMojibake);
+    if (Array.isArray(item.clues.medium)) item.clues.medium = item.clues.medium.map(fixMojibake);
+    if (Array.isArray(item.clues.hard)) item.clues.hard = item.clues.hard.map(fixMojibake);
+  }
+  if (Array.isArray(item.facts)) item.facts = item.facts.map(fixMojibake);
+}
+
+function normalizeDataset(dataset) {
+  if (!Array.isArray(dataset)) return;
+  dataset.forEach((item) => normalizeItem(item));
+}
+
+function normalizeAppData() {
+  CATEGORIES.forEach((cat) => {
+    cat.label = fixMojibake(cat.label);
+    cat.icon = fixIcon(cat.icon, cat.id);
+  });
+  MODES.forEach((mode) => {
+    mode.label = fixMojibake(mode.label);
+    mode.icon = fixIcon(mode.icon, mode.id);
+  });
+  Object.values(DATA).forEach((list) => normalizeDataset(list));
+  Object.values(EXTRA_DATA).forEach((list) => normalizeDataset(list));
+}
+
+normalizeAppData();
 
 
 const state = {
@@ -2369,7 +2497,8 @@ const state = {
   timedRounds: 0,
   timedActive: false,
   timedEndAt: 0,
-  usedByKey: {}
+  usedByKey: {},
+  feedbackTimerId: null
 };
 
 const els = {
@@ -2383,6 +2512,7 @@ const els = {
   categoryChip: document.getElementById("categoryChip"),
   modeChip: document.getElementById("modeChip"),
   timerChip: document.getElementById("timerChip"),
+  timerLabel: document.getElementById("timerLabel"),
   timerValue: document.getElementById("timerValue"),
   scoreChip: document.getElementById("scoreChip"),
   clueText: document.getElementById("clueText"),
@@ -2395,8 +2525,13 @@ const els = {
   submitAnswer: document.getElementById("submitAnswer"),
   result: document.getElementById("result"),
   fact: document.getElementById("fact"),
+  feedbackOverlay: document.getElementById("feedbackOverlay"),
+  feedbackTitle: document.getElementById("feedbackTitle"),
+  feedbackSub: document.getElementById("feedbackSub"),
   playAgain: document.getElementById("playAgain"),
   backToSetup: document.getElementById("backToSetup"),
+  playAgainMobile: document.getElementById("playAgainMobile"),
+  backToSetupMobile: document.getElementById("backToSetupMobile"),
   sound: document.getElementById("sound"),
   timer: document.getElementById("timer"),
   timedMode: document.getElementById("timedMode"),
@@ -2514,51 +2649,51 @@ function getCategoryItems(category) {
 
 const GENERIC_CLUES = {
   animal: [
-    "Il peut se dÃ©placer",
+    "Il peut se déplacer",
     "Il a un corps vivant",
     "Il peut manger et boire",
     "Il peut faire des bruits",
     "On peut le voir dans la nature",
-    "Il a une tÃªte et des pattes",
+    "Il a une tête et des pattes",
     "Il peut dormir la nuit",
-    "Il peut Ãªtre petit ou grand",
+    "Il peut être petit ou grand",
     "Il a des yeux",
     "Il respire"
   ],
   objet: [
     "On peut le toucher",
-    "Il a une utilitÃ©",
-    "On peut le trouver Ã  la maison",
+    "Il a une utilité",
+    "On peut le trouver à la maison",
     "Il ne mange pas",
     "On peut l'utiliser tous les jours",
-    "Il peut Ãªtre petit ou grand",
+    "Il peut être petit ou grand",
     "On peut le tenir dans la main",
     "Il ne parle pas",
-    "Il peut Ãªtre posÃ© sur une table",
-    "Il sert Ã  quelque chose"
+    "Il peut être posé sur une table",
+    "Il sert à quelque chose"
   ],
   aliment: [
     "On peut le manger",
-    "On peut le goÃ»ter",
-    "Il peut Ãªtre cru ou cuit",
+    "On peut le goûter",
+    "Il peut être cru ou cuit",
     "Il vient d'une plante",
-    "On le trouve au marchÃ©",
-    "Il peut Ãªtre sucrÃ© ou salÃ©",
+    "On le trouve au marché",
+    "Il peut être sucré ou salé",
     "On peut le mettre dans une recette",
-    "Il peut Ãªtre coupÃ©",
+    "Il peut être coupé",
     "On peut le laver",
     "On le garde dans la cuisine"
   ],
   personne: [
     "Elle peut parler",
     "Elle peut marcher",
-    "Elle a un prÃ©nom",
+    "Elle a un prénom",
     "Elle peut rire",
     "Elle peut apprendre",
-    "Elle a des vÃªtements",
+    "Elle a des vêtements",
     "Elle peut aider",
     "Elle peut aimer jouer",
-    "Elle peut Ãªtre gentille",
+    "Elle peut être gentille",
     "Elle peut avoir une famille"
   ]
 };
@@ -2566,7 +2701,7 @@ const GENERIC_CLUES = {
 const CATEGORY_MARKERS = {
   animal: ["c'est un animal"],
   objet: ["c'est un objet"],
-  aliment: ["c'est un fruit", "c'est un lÃ©gume", "c'est un aliment"],
+  aliment: ["c'est un fruit", "c'est un légume", "c'est un aliment"],
   personne: ["c'est une personne", "c'est un personnage"]
 };
 
@@ -2705,9 +2840,7 @@ function showClue() {
 }
 
 function setTimerLabel(text) {
-  const nodes = Array.from(els.timerChip.childNodes);
-  const labelNode = nodes.find((node) => node.nodeType === Node.TEXT_NODE);
-  if (labelNode) labelNode.textContent = text;
+  if (els.timerLabel) els.timerLabel.textContent = text;
 }
 
 function startTimer() {
@@ -2716,7 +2849,8 @@ function startTimer() {
     state.timedActive = true;
     state.timedEndAt = state.startTime + 60000;
     state.timedRemaining = 60;
-    setTimerLabel("Temps restant: ");
+    const isMobile = window.matchMedia("(max-width: 600px)").matches;
+    setTimerLabel(isMobile ? "" : "Temps restant:");
     els.timerChip.classList.remove("hidden");
     els.timerValue.textContent = state.timedRemaining.toFixed(1);
     updateScoreChip();
@@ -2730,7 +2864,7 @@ function startTimer() {
   }
 
   if (state.timer) {
-    setTimerLabel("Temps: ");
+    setTimerLabel("Temps:");
     els.timerChip.classList.remove("hidden");
     state.timerId = setInterval(() => {
       const elapsed = (performance.now() - state.startTime) / 1000;
@@ -2757,6 +2891,51 @@ function resetResult() {
   renderHistory();
 }
 
+function isMobileViewport() {
+  return window.matchMedia("(max-width: 600px)").matches;
+}
+
+function hideMobileFeedback() {
+  if (!els.feedbackOverlay) return;
+  if (state.feedbackTimerId) clearTimeout(state.feedbackTimerId);
+  state.feedbackTimerId = null;
+  els.feedbackOverlay.classList.remove("show", "success", "error", "final");
+  els.feedbackOverlay.classList.add("hidden");
+  if (els.feedbackTitle) els.feedbackTitle.textContent = "";
+  if (els.feedbackSub) els.feedbackSub.textContent = "";
+}
+
+function showMobileFeedback(ok, title, subtitle = "", persist = false) {
+  if (!isMobileViewport() || !els.feedbackOverlay) return;
+  if (state.feedbackTimerId) clearTimeout(state.feedbackTimerId);
+  state.feedbackTimerId = null;
+
+  els.feedbackOverlay.classList.remove("hidden", "success", "error", "final");
+  els.feedbackOverlay.classList.add("show", ok ? "success" : "error");
+  if (persist) els.feedbackOverlay.classList.add("final");
+
+  if (els.feedbackTitle) els.feedbackTitle.textContent = title;
+  if (els.feedbackSub) els.feedbackSub.textContent = subtitle;
+
+  if (!persist) {
+    state.feedbackTimerId = setTimeout(() => hideMobileFeedback(), 520);
+  }
+}
+
+function transitionToNextTimedRiddle(callback) {
+  if (!isMobileViewport()) {
+    callback();
+    return;
+  }
+  els.game.classList.add("round-transition");
+  setTimeout(() => {
+    callback();
+    requestAnimationFrame(() => {
+      els.game.classList.remove("round-transition");
+    });
+  }, 140);
+}
+
 function resetTimedState() {
   state.timedRemaining = 60;
   state.timedScore = 0;
@@ -2766,6 +2945,7 @@ function resetTimedState() {
 
 function showResult(ok, message) {
   els.result.textContent = message;
+  if (isMobileViewport()) showMobileFeedback(ok, message);
   if (ok) {
     els.result.style.color = "#2d6a4f";
     if (!isTimedMode()) launchConfetti();
@@ -2785,10 +2965,12 @@ function updateClueControls() {
   }
   if (noMore) {
     els.nextClue.disabled = true;
-    els.nextClue.textContent = "Plus d'indice";
+    els.nextClue.textContent = "+";
+    els.nextClue.title = "Plus d'indice";
   } else {
     els.nextClue.disabled = false;
-    els.nextClue.innerHTML = '<span class="btn-icon">ðŸ§©</span>Nouvel indice';
+    els.nextClue.textContent = "+";
+    els.nextClue.title = "Nouvel indice";
   }
 }
 
@@ -2829,12 +3011,12 @@ function showFact(item) {
 function updateActionLabels() {
   if (isTimedMode()) {
     if (state.finished) {
-      els.playAgain.innerHTML = '<span class="btn-icon">ðŸŽ²</span>Rejouer';
+      els.playAgain.textContent = "Rejouer";
     } else {
-      els.playAgain.innerHTML = '<span class="btn-icon">â­ï¸</span>Passer';
+      els.playAgain.textContent = "Passer";
     }
   } else {
-    els.playAgain.innerHTML = '<span class="btn-icon">ðŸŽ²</span>Nouvelle Ã©nigme';
+    els.playAgain.textContent = "Nouvelle énigme";
   }
 }
 
@@ -2842,13 +3024,16 @@ function updateActionLabels() {
 function updateMobileActionLabels() {
   const isMobile = window.matchMedia("(max-width: 600px)").matches;
   if (isMobile) {
+    if (els.playAgainMobile) els.playAgainMobile.textContent = "Nouveau";
+    if (els.backToSetupMobile) els.backToSetupMobile.textContent = "Retour";
     els.playAgain.textContent = "Nouveau";
     els.backToSetup.textContent = "Retour";
   } else {
     updateActionLabels();
-    els.backToSetup.innerHTML = '<span class="btn-icon">⚙️</span>Retour aux réglages';
+    els.backToSetup.textContent = "Retour aux réglages";
   }
 }
+
 
 function endTimedSession() {
   if (!isTimedMode() || state.finished) return;
@@ -2862,18 +3047,22 @@ function endTimedSession() {
   els.nextClue.disabled = true;
 
   const score = state.timedScore;
-  const summary = `Temps Ã©coulÃ© ! Score: ${score} bonne${score > 1 ? "s" : ""} rÃ©ponse${score > 1 ? "s" : ""}.`;
+  const summary = `Temps écoulé ! Score: ${score} bonne${score > 1 ? "s" : ""} réponse${score > 1 ? "s" : ""}.`;
   showResult(true, summary);
 
   const recordId = `timed-${state.mode}`;
   const record = getRecord(recordId);
+  let recordMessage = "";
   if (!record || score > record.score) {
     const name = (prompt("Nouveau record ! Ton nom ?") || "Anonyme").trim() || "Anonyme";
     setRecord(recordId, score, name);
-    els.fact.textContent = `Nouveau record (${getLabel(state.mode)}): ${score} par ${name}.`;
+    recordMessage = `Nouveau record (${getLabel(state.mode)}): ${score} par ${name}.`;
+    els.fact.textContent = recordMessage;
   } else {
-    els.fact.textContent = `Record actuel (${getLabel(state.mode)}): ${record.score} par ${record.name || "Anonyme"}.`;
+    recordMessage = `Record actuel (${getLabel(state.mode)}): ${record.score} par ${record.name || "Anonyme"}.`;
+    els.fact.textContent = recordMessage;
   }
+  if (isMobileViewport()) showMobileFeedback(true, summary, recordMessage, true);
 }
 
 function launchConfetti() {
@@ -2926,6 +3115,7 @@ function playSound(type) {
 }
 
 function startRound() {
+  hideMobileFeedback();
   const riddle = createRiddle();
   state.current = riddle.answer;
   state.currentCategory = riddle.category;
@@ -2958,10 +3148,12 @@ function startRound() {
 }
 
 function startGame() {
+  hideMobileFeedback();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.body.classList.add('game-active');
   state.age = Number(els.age.value);
   state.timedMode = !!els.timedMode?.checked;
-  state.timer = isTimedMode() ? false : els.timer.checked;
+  state.timer = isTimedMode() ? false : !!els.timer?.checked;
   state.sound = els.sound.checked;
   state.usedByKey = {};
   if (isTimedMode()) resetTimedState();
@@ -2978,7 +3170,7 @@ function startGame() {
 }
 
 function updateChips() {
-  const catLabel = state.category === "aleatoire" ? "AlÃ©atoire" : getLabel(state.category);
+  const catLabel = state.category === "aleatoire" ? "Aléatoire" : getLabel(state.category);
   els.categoryChip.textContent = "Type: " + catLabel;
   els.modeChip.textContent = "Mode: " + getLabel(state.mode);
   updateScoreChip();
@@ -3046,10 +3238,10 @@ function endRound(ok, corrected) {
       state.timedScore += 1;
       state.timedRounds += 1;
       updateScoreChip();
-      showResult(true, "Bonne rÃ©ponse !");
+      showResult(true, "Bonne réponse !");
       setTimeout(() => {
         if (state.finished || !state.timedActive) return;
-        startRound();
+        transitionToNextTimedRiddle(() => startRound());
       }, 250);
     } else {
       showResult(false, "Pas encore ! Essaie encore.");
@@ -3062,10 +3254,10 @@ function endRound(ok, corrected) {
   const answer = state.current.label;
 
   if (ok) {
-    const correctText = corrected ? `Bonne rÃ©ponse! On Ã©crit: ${answer}.` : "Bravo! Bonne rÃ©ponse!";
+    const correctText = corrected ? `Bonne réponse! On écrit: ${answer}.` : "Bravo! Bonne réponse!";
     showResult(true, correctText);
   } else {
-    showResult(false, `Perdu! La bonne rÃ©ponse Ã©tait: ${answer}.`);
+    showResult(false, `Perdu! La bonne réponse était: ${answer}.`);
   }
   showFact(state.current);
   updateClueControls();
@@ -3082,11 +3274,29 @@ els.nextClue.addEventListener("click", () => {
   playSound("click");
 });
 
+if (els.feedbackOverlay) {
+  els.feedbackOverlay.addEventListener("click", () => {
+    if (els.feedbackOverlay.classList.contains("final")) {
+      hideMobileFeedback();
+    }
+  });
+}
+
 els.submitAnswer.addEventListener("click", () => submitText());
 
 els.answerInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") submitText();
 });
+
+if (els.playAgainMobile) {
+  els.playAgainMobile.addEventListener("click", () => {
+    if (isTimedMode() && state.timedActive && !state.finished) {
+      startRound();
+      return;
+    }
+    startGame();
+  });
+}
 
 els.playAgain.addEventListener("click", () => {
   if (isTimedMode() && state.timedActive && !state.finished) {
@@ -3095,7 +3305,20 @@ els.playAgain.addEventListener("click", () => {
   }
   startGame();
 });
+if (els.backToSetupMobile) {
+  els.backToSetupMobile.addEventListener("click", () => {
+    hideMobileFeedback();
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.body.classList.remove("game-active");
+    stopTimer();
+    els.game.classList.add("hidden");
+    els.setup.classList.remove("hidden");
+  });
+}
+
 els.backToSetup.addEventListener("click", () => {
+  hideMobileFeedback();
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.body.classList.remove('game-active');
   stopTimer();
   els.game.classList.add("hidden");
@@ -3118,6 +3341,18 @@ window.addEventListener("resize", () => {
 function setup() {
   initOptions();
   updateTimedToggleUI();
+  registerServiceWorker();
 }
 
 setup();
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+
+
+
+
