@@ -31,7 +31,11 @@ const ICON_FALLBACK = {
   balle_tennis: "🎾",
   pistolet_eau: "🔫",
   bonnet: "🧢",
-  perceuse: "🛠️",
+  perceuse: "🪛",
+  cle_usb: "🔌",
+  gourde: "🧴",
+  telecommande: "🎛️",
+  montgolfiere: "🎈🔥",
   cahier: "📓",
   brosse_a_cheveux: "🪮",
   facteur: "📮",
@@ -226,7 +230,7 @@ const DATA = {
       aliases: ["ours", "un ours", "l'ours"],
       icon: "ðŸ»",
       clues: {
-        easy: ["C'est un animal", "Il est grand"],
+        easy: ["C'est un animal", "Il a de grosses pattes"],
         medium: ["Il aime le miel", "Il vit dans la forêt"],
         hard: ["Il peut hiberner", "Il a de grosses pattes"]
       },
@@ -526,7 +530,7 @@ const DATA = {
       id: "montgolfiere",
       label: "Montgolfière",
       aliases: ["montgolfiere", "montgolfière", "une montgolfière"],
-      icon: "ðŸŽˆ",
+      icon: "🎈🔥",
       clues: {
         easy: ["C'est un objet volant", "Elle est grande"],
         medium: ["Elle est remplie d'air chaud", "Elle monte dans le ciel"],
@@ -1127,7 +1131,7 @@ const EXTRA_DATA = {
       aliases: ["ecureuil", "écureuil", "un écureuil"],
       icon: "ðŸ¿ï¸",
       clues: {
-        easy: ["C'est un animal", "Il est petit"],
+        easy: ["C'est un animal", "Il a une queue en panache"],
         medium: ["Il grimpe aux arbres", "Il mange des noisettes"],
         hard: ["Il a une queue en panache", "Il cache sa nourriture"]
       },
@@ -1151,7 +1155,7 @@ const EXTRA_DATA = {
       aliases: ["koala", "un koala", "le koala"],
       icon: "ðŸ¨",
       clues: {
-        easy: ["C'est un animal", "Il est petit"],
+        easy: ["C'est un animal", "Il vient d'Australie"],
         medium: ["Il vit dans les arbres", "Il aime les feuilles"],
         hard: ["Il vient d'Australie", "Il dort beaucoup"]
       },
@@ -1175,7 +1179,7 @@ const EXTRA_DATA = {
       aliases: ["herisson", "hérisson", "un hérisson"],
       icon: "ðŸ¦”",
       clues: {
-        easy: ["C'est un animal", "Il est petit"],
+        easy: ["C'est un animal", "Il a des piquants"],
         medium: ["Il a des piquants", "Il se roule en boule"],
         hard: ["Il vit dans les jardins", "Il sort surtout la nuit"]
       },
@@ -1379,7 +1383,7 @@ const EXTRA_DATA = {
       aliases: ["poussin", "un poussin"],
       icon: "ðŸ¥",
       clues: {
-        easy: ["C'est un animal", "Il est petit"],
+        easy: ["C'est un animal", "Il est jaune"],
         medium: ["Il sort d'un oeuf", "Il est jaune"],
         hard: ["Il devient une poule", "Il fait piou-piou"]
       },
@@ -1415,7 +1419,7 @@ const EXTRA_DATA = {
       aliases: ["ours", "un ours", "l'ours"],
       icon: "ðŸ»",
       clues: {
-        easy: ["C'est un animal", "Il est grand"],
+        easy: ["C'est un animal", "Il aime le miel"],
         medium: ["Il vit dans la forêt", "Il aime le miel"],
         hard: ["Il peut hiberner", "Il a de grosses pattes"]
       },
@@ -1523,7 +1527,7 @@ const EXTRA_DATA = {
       id: "gourde",
       label: "Gourde",
       aliases: ["gourde", "une gourde", "la gourde"],
-      icon: "ðŸš°",
+      icon: "🧴",
       clues: {
         easy: ["C'est un objet", "On boit avec"],
         medium: ["Elle contient de l'eau", "Elle se ferme"],
@@ -1559,7 +1563,7 @@ const EXTRA_DATA = {
       id: "telecommande",
       label: "Télécommande",
       aliases: ["telecommande", "télécommande", "une télécommande"],
-      icon: "ðŸ“º",
+      icon: "🎛️",
       clues: {
         easy: ["C'est un objet", "On appuie dessus"],
         medium: ["Elle a des boutons", "Elle contrôle un écran"],
@@ -1643,7 +1647,7 @@ const EXTRA_DATA = {
       id: "cle_usb",
       label: "Clé USB",
       aliases: ["cle usb", "clé usb", "une clé usb"],
-      icon: "ðŸ’¾",
+      icon: "🔌",
       clues: {
         easy: ["C'est un objet", "Il est petit"],
         medium: ["On le branche", "Il garde des fichiers"],
@@ -1665,15 +1669,15 @@ const EXTRA_DATA = {
     },
     {
       id: "pistolet_eau",
-      label: "Pistolet é eau",
-      aliases: ["pistolet a eau", "pistolet é eau", "un pistolet é eau"],
+      label: "Pistolet à eau",
+      aliases: ["pistolet a eau", "pistolet à eau", "un pistolet à eau"],
       icon: "🔫",
       clues: {
         easy: ["C'est un objet", "On joue avec"],
         medium: ["Il envoie de l'eau", "Il est en plastique"],
-        hard: ["On l'utilise l'été", "Il sert é arroser en jouant"]
+        hard: ["On l'utilise l'été", "Il sert à arroser en jouant"]
       },
-      facts: ["Le pistolet é eau sert é jouer dehors.", "Il est utilisé en été."]
+      facts: ["Le pistolet à eau sert à jouer dehors.", "Il est utilisé en été."]
     },
     {
       id: "bonnet",
@@ -1691,13 +1695,13 @@ const EXTRA_DATA = {
       id: "perceuse",
       label: "Perceuse",
       aliases: ["perceuse", "une perceuse"],
-      icon: "🛠️",
+      icon: "🪛",
       clues: {
         easy: ["C'est un objet", "On l'utilise pour bricoler"],
         medium: ["Elle tourne", "Elle fait du bruit"],
         hard: ["Elle fait des trous", "On l'utilise sur le bois"]
       },
-      facts: ["La perceuse sert é faire des trous.", "Elle est utile pour le bricolage."]
+      facts: ["La perceuse sert à faire des trous.", "Elle est utile pour le bricolage."]
     },
     {
       id: "cahier",
@@ -2649,16 +2653,12 @@ function getCategoryItems(category) {
 
 const GENERIC_CLUES = {
   animal: [
-    "Il peut se déplacer",
-    "Il a un corps vivant",
-    "Il peut manger et boire",
-    "Il peut faire des bruits",
     "On peut le voir dans la nature",
-    "Il a une tête et des pattes",
-    "Il peut dormir la nuit",
-    "Il peut être petit ou grand",
-    "Il a des yeux",
-    "Il respire"
+    "Il a une peau, des poils, des plumes ou des écailles",
+    "Il peut vivre sur terre, dans l'eau ou dans les airs",
+    "Il a des façons de se protéger",
+    "Il a une nourriture préférée",
+    "On peut reconnaître sa manière de bouger"
   ],
   objet: [
     "On peut le toucher",
@@ -2722,9 +2722,10 @@ function getCluesForAge(item, age, category, isRandom) {
     const key = normalize(text).replace(/'/g, " ");
     return markers.some((m) => key === normalize(m).replace(/'/g, " "));
   };
-  const filtered = isRandom ? clues : clues.filter((c) => !isCategoryHint(c));
+  const keepCategoryHints = isRandom && state.mode === "texte";
+  const filtered = keepCategoryHints ? clues : clues.filter((c) => !isCategoryHint(c));
 
-  const minClues = 10;
+  const minClues = 7;
   const generic = GENERIC_CLUES[category] || [];
   let i = 0;
   while (filtered.length < minClues && i < generic.length) {
@@ -2832,8 +2833,10 @@ function createRiddle() {
 function showClue() {
   if (state.clueIndex >= state.clues.length) {
     els.clueText.textContent = "Plus d'indice disponible.";
+    els.clueText.classList.add("clue-empty");
   } else {
     els.clueText.textContent = state.clues[state.clueIndex];
+    els.clueText.classList.remove("clue-empty");
   }
   renderHistory();
   updateClueControls();
@@ -2957,6 +2960,7 @@ function showResult(ok, message) {
 }
 
 function updateClueControls() {
+  const mobile = isMobileViewport();
   const noMore = state.clueIndex >= state.clues.length;
   if (state.finished) {
     els.nextClue.classList.add("hidden");
@@ -2964,12 +2968,12 @@ function updateClueControls() {
     return;
   }
   if (noMore) {
+    els.nextClue.classList.add("hidden");
     els.nextClue.disabled = true;
-    els.nextClue.textContent = "+";
-    els.nextClue.title = "Plus d'indice";
   } else {
+    els.nextClue.classList.remove("hidden");
     els.nextClue.disabled = false;
-    els.nextClue.textContent = "+";
+    els.nextClue.textContent = mobile ? "+" : "Nouvel indice +";
     els.nextClue.title = "Nouvel indice";
   }
 }
@@ -2986,7 +2990,7 @@ function renderHistory() {
     row.className = "item";
     const badge = document.createElement("span");
     badge.className = "badge";
-    badge.textContent = `#${i + 1}`;
+    badge.textContent = `${i + 1}`;
     const text = document.createElement("span");
     text.textContent = state.clues[i];
     row.appendChild(badge);
@@ -3335,7 +3339,10 @@ if (els.timedMode) {
 }
 
 window.addEventListener("resize", () => {
-  if (!els.game.classList.contains("hidden")) updateMobileActionLabels();
+  if (!els.game.classList.contains("hidden")) {
+    updateMobileActionLabels();
+    updateClueControls();
+  }
 });
 
 function setup() {
