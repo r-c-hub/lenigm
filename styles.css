@@ -246,10 +246,17 @@ body {
 .game-body {
   display: grid;
   grid-template-columns: 1fr 280px;
+  grid-template-areas:
+    "riddle history"
+    "play history";
   gap: 18px;
   align-items: start;
   margin-bottom: 18px;
 }
+
+.riddle { grid-area: riddle; }
+.play-area { grid-area: play; }
+.history { grid-area: history; }
 
 .riddle-actions {
   display: flex;
@@ -392,5 +399,46 @@ body {
 
 @media (max-width: 600px) {
   .text-mode { flex-direction: column; align-items: stretch; }
-  .game-body { grid-template-columns: 1fr; }
+  .game-body {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "riddle"
+      "play"
+      "history";
+  }
+
+  body.game-active .brand {
+    display: none;
+  }
+
+  body.game-active #categoryChip,
+  body.game-active #modeChip {
+    display: none;
+  }
+
+  .game-actions .primary,
+  .game-actions .ghost,
+  .game-actions .secondary {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  #nextClue {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 8px;
+  }
+
+  .image-card {
+    padding: 6px;
+  }
+
+  .image-card img {
+    width: 64px;
+    height: 64px;
+  }
 }

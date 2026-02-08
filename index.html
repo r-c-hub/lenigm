@@ -90,16 +90,19 @@
             <button class="secondary" id="nextClue"><span class="btn-icon">🧩</span>Nouvel indice</button>
           </div>
         </div>
+
+        <div class="play-area">
+          <div class="image-mode hidden" id="imageMode">
+            <div class="image-grid" id="imageGrid"></div>
+          </div>
+
+          <div class="text-mode hidden" id="textMode" hidden>
+            <input type="text" id="answerInput" placeholder="Ta réponse..." autocomplete="off" />
+            <button class="primary" id="submitAnswer"><span class="btn-icon">✅</span>Valider</button>
+          </div>
+        </div>
+
         <aside class="history" id="clueHistory" aria-live="polite"></aside>
-      </div>
-
-      <div class="image-mode hidden" id="imageMode">
-        <div class="image-grid" id="imageGrid"></div>
-      </div>
-
-      <div class="text-mode hidden" id="textMode" hidden>
-        <input type="text" id="answerInput" placeholder="Ta réponse..." autocomplete="off" />
-        <button class="primary" id="submitAnswer"><span class="btn-icon">✅</span>Valider</button>
       </div>
 
       <div class="result" id="result"></div>
