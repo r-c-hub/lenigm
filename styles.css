@@ -360,9 +360,16 @@ body {
   border-color: var(--accent-2);
 }
 
-.image-card img {
+.image-emoji {
+  display: grid;
+  place-items: center;
   width: 90px;
   height: 90px;
+  margin: 0 auto;
+  border-radius: 14px;
+  background: #fff7e9;
+  font-size: 52px;
+  line-height: 1;
 }
 
 .image-card span {
@@ -558,9 +565,10 @@ body {
     padding: 6px;
   }
 
-  .image-card img {
+  .image-emoji {
     width: 64px;
     height: 64px;
+    font-size: 38px;
   }
 
   body.game-active .app {
