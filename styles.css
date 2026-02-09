@@ -613,11 +613,16 @@ body {
   }
 
   body.game-active .clue {
-    font-size: 19px;
+    font-size: 20px;
     line-height: 1.35;
     min-height: calc(1.35em * 2 + 16px);
     padding: 12px 12px;
+    font-style: normal;
     align-items: center;
+  }
+
+  body.game-active #clueText {
+    font-style: normal;
   }
 
   .feedback-card {
