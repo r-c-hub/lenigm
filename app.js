@@ -12,6 +12,9 @@ const MODES = [
 ];
 
 const RECORD_KEY = "lenigm_records";
+const SUCCESS_FEEDBACK_MS = 1200;
+const ERROR_FEEDBACK_MS = 1000;
+const NEXT_ROUND_DELAY_MS = SUCCESS_FEEDBACK_MS + 120;
 
 const ICON_FALLBACK = {
   animal: "Ã°Å¸ÂÂ¾",
@@ -2354,7 +2357,9 @@ const state = {
   timedActive: false,
   timedEndAt: 0,
   usedByKey: {},
-  feedbackTimerId: null
+  feedbackTimerId: null,
+  roundTimerId: null,
+  lastWrongImageChoice: null
 };
 
 const els = {
@@ -2691,7 +2696,10 @@ function stopTimer() {
 }
 
 function resetResult() {
+  if (state.roundTimerId) clearTimeout(state.roundTimerId);
+  state.roundTimerId = null;
   state.finished = false;
+  state.lastWrongImageChoice = null;
   els.result.textContent = "";
   els.fact.textContent = "";
   els.confetti.innerHTML = "";
@@ -2714,7 +2722,7 @@ function hideMobileFeedback() {
   if (els.feedbackSub) els.feedbackSub.textContent = "";
 }
 
-function showMobileFeedback(ok, title, subtitle = "", persist = false) {
+function showMobileFeedback(ok, title, subtitle = "", persist = false, durationMs = null) {
   if (!isMobileViewport() || !els.feedbackOverlay) return;
   if (state.feedbackTimerId) clearTimeout(state.feedbackTimerId);
   state.feedbackTimerId = null;
@@ -2727,7 +2735,8 @@ function showMobileFeedback(ok, title, subtitle = "", persist = false) {
   if (els.feedbackSub) els.feedbackSub.textContent = subtitle;
 
   if (!persist) {
-    state.feedbackTimerId = setTimeout(() => hideMobileFeedback(), 520);
+    const delay = durationMs ?? (ok ? SUCCESS_FEEDBACK_MS : ERROR_FEEDBACK_MS);
+    state.feedbackTimerId = setTimeout(() => hideMobileFeedback(), delay);
   }
 }
 
@@ -2752,15 +2761,16 @@ function resetTimedState() {
   updateScoreChip();
 }
 
-function showResult(ok, message) {
+function showResult(ok, message, options = {}) {
+  const { color = null, subtitle = "", mobileDurationMs = null } = options;
   els.result.textContent = message;
-  if (isMobileViewport()) showMobileFeedback(ok, message);
+  if (isMobileViewport()) showMobileFeedback(ok, message, subtitle, false, mobileDurationMs);
   if (ok) {
-    els.result.style.color = "#2d6a4f";
+    els.result.style.color = color || "#2d6a4f";
     if (!isTimedMode()) launchConfetti();
     playSound("success");
   } else {
-    els.result.style.color = "#b7094c";
+    els.result.style.color = color || "#b7094c";
     playSound("fail");
   }
 }
@@ -3008,6 +3018,7 @@ function renderImageChoices() {
     icon.setAttribute("aria-hidden", "true");
     icon.textContent = fixIcon(item.icon, item.id);
     const span = document.createElement("span");
+    span.className = "image-label";
     span.textContent = item.label;
     card.appendChild(icon);
     card.appendChild(span);
@@ -3033,6 +3044,9 @@ function detectCategory(item) {
 function handleAnswer(choice) {
   if (state.finished) return;
   const ok = choice.id === state.current.id;
+  if (!ok && !isTimedMode() && state.mode === "image") {
+    state.lastWrongImageChoice = choice.label;
+  }
   endRound(ok, ok ? null : choice.label);
 }
 
@@ -3049,14 +3063,19 @@ function endRound(ok, corrected) {
       state.timedScore += 1;
       state.timedRounds += 1;
       updateScoreChip();
-      showResult(true, "Bonne r\u00e9ponse !");
+      showResult(true, "Bonne r\u00e9ponse !", { mobileDurationMs: SUCCESS_FEEDBACK_MS });
       setTimeout(() => {
         if (state.finished || !state.timedActive) return;
         transitionToNextTimedRiddle(() => startRound());
-      }, 250);
+      }, NEXT_ROUND_DELAY_MS);
     } else {
-      showResult(false, "Pas encore ! Essaie encore.");
+      showResult(false, "Pas encore ! Essaie encore.", { mobileDurationMs: ERROR_FEEDBACK_MS });
     }
+    return;
+  }
+
+  if (!ok && state.mode === "image") {
+    showResult(false, "Pas encore ! Essaie encore.", { mobileDurationMs: ERROR_FEEDBACK_MS });
     return;
   }
 
@@ -3066,9 +3085,13 @@ function endRound(ok, corrected) {
 
   if (ok) {
     const correctText = corrected ? `Bonne r\u00e9ponse! On \u00e9crit: ${answer}.` : "Bravo! Bonne r\u00e9ponse!";
-    showResult(true, correctText);
+    showResult(true, correctText, { mobileDurationMs: SUCCESS_FEEDBACK_MS });
+    state.roundTimerId = setTimeout(() => {
+      if (!state.finished) return;
+      startRound();
+    }, NEXT_ROUND_DELAY_MS);
   } else {
-    showResult(false, `Perdu! La bonne r\u00e9ponse \u00e9tait: ${answer}.`);
+    showResult(false, `Perdu! La bonne r\u00e9ponse \u00e9tait: ${answer}.`, { mobileDurationMs: ERROR_FEEDBACK_MS });
   }
   showFact(state.current);
   updateClueControls();
@@ -3118,6 +3141,8 @@ els.playAgain.addEventListener("click", () => {
 });
 if (els.backToSetupMobile) {
   els.backToSetupMobile.addEventListener("click", () => {
+    if (state.roundTimerId) clearTimeout(state.roundTimerId);
+    state.roundTimerId = null;
     hideMobileFeedback();
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     document.body.classList.remove("game-active");
@@ -3128,6 +3153,8 @@ if (els.backToSetupMobile) {
 }
 
 els.backToSetup.addEventListener("click", () => {
+  if (state.roundTimerId) clearTimeout(state.roundTimerId);
+  state.roundTimerId = null;
   hideMobileFeedback();
   window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   document.body.classList.remove('game-active');

@@ -372,7 +372,7 @@ body {
   line-height: 1;
 }
 
-.image-card span {
+.image-label {
   display: block;
   font-weight: 700;
   margin-top: 6px;
@@ -511,7 +511,7 @@ body {
   }
 
   body.game-active .game-body {
-    gap: 10px;
+    gap: 8px;
   }
 
   body.game-active .riddle {
@@ -538,7 +538,7 @@ body {
 
   .mobile-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
   }
 
@@ -557,18 +557,25 @@ body {
   }
 
   .image-grid {
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+    gap: 6px;
   }
 
   .image-card {
-    padding: 6px;
+    padding: 4px;
+    border-radius: 12px;
   }
 
   .image-emoji {
-    width: 64px;
-    height: 64px;
-    font-size: 38px;
+    width: 52px;
+    height: 52px;
+    font-size: 32px;
+  }
+
+  .image-label {
+    margin-top: 2px;
+    font-size: 10px;
+    line-height: 1.05;
   }
 
   body.game-active .app {
@@ -580,7 +587,7 @@ body {
   }
 
   body.game-active .panel {
-    padding-top: 12px;
+    padding: 10px;
   }
 
   body.game-active .game-top {
@@ -593,8 +600,8 @@ body {
   }
 
   body.game-active .chip {
-    padding: 5px 10px;
-    font-size: 13px;
+    padding: 4px 8px;
+    font-size: 12px;
   }
 
   body.game-active #timerLabel {
@@ -606,9 +613,10 @@ body {
   }
 
   body.game-active .clue {
-    font-size: 18px;
-    line-height: 1.35;
-    min-height: calc(1.35em * 2 + 18px);
+    font-size: 16px;
+    line-height: 1.3;
+    min-height: calc(1.3em * 2 + 14px);
+    padding: 10px 12px;
     align-items: center;
   }
 
