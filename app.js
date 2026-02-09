@@ -2625,7 +2625,8 @@ function buildChoices(answer, category) {
     others.push(item);
   });
 
-  const picks = others.slice(0, Math.min(9, others.length));
+  const maxOtherChoices = isMobileViewport() ? 11 : 9;
+  const picks = others.slice(0, Math.min(maxOtherChoices, others.length));
   return shuffle([answer, ...picks]);
 }
 
@@ -2867,7 +2868,7 @@ function endTimedSession() {
   els.nextClue.disabled = true;
 
   const score = state.timedScore;
-  const summary = `Temps ÃƒÂ©coulÃƒÂ© ! Score: ${score} bonne${score > 1 ? "s" : ""} rÃƒÂ©ponse${score > 1 ? "s" : ""}.`;
+  const summary = `Temps \u00e9coul\u00e9 ! Score: ${score} bonne${score > 1 ? "s" : ""} r\u00e9ponse${score > 1 ? "s" : ""}.`;
   showResult(true, summary);
 
   const recordId = `timed-${state.mode}`;
